@@ -11,7 +11,7 @@ class MovieHeader extends BaseHeader {
       backgroundColor: Color.fromARGB(255, 30, 42, 58),
       elevation: 0,
       bottom: TabBar(
-        indicatorColor: Colors.transparent,
+        indicatorColor: Colors.white,
         tabs: <Widget>[
           initTitle('Now Showing'),
           initTitle('Special'),

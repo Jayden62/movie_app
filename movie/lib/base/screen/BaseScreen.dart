@@ -12,6 +12,7 @@ abstract class BaseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: DefaultTabController(
+          key: onInitScaffoldState(context),
           length: 3,
           initialIndex: 0,
           child: GestureDetector(
@@ -44,6 +45,10 @@ abstract class BaseScreen extends StatelessWidget {
   }
 
   Key onInitKey(BuildContext context) {
+    return null;
+  }
+
+  GlobalKey<ScaffoldState> onInitScaffoldState(BuildContext context) {
     return null;
   }
 

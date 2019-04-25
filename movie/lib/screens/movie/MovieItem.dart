@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:movie/base/item/BaseItem.dart';
 
 class MovieItem extends BaseItem {
-  final String image, name, alpha, time;
+  final String image;
 
-  MovieItem(this.image, this.name, this.alpha, this.time);
+  MovieItem(this.image);
 
   @override
   Widget onInitBody(BuildContext context) {
@@ -18,7 +18,8 @@ class MovieItem extends BaseItem {
         child: Image.network(
       image,
       fit: BoxFit.cover,
-      width: 400,
+      width: 250,
+      height: 250,
     ));
   }
 }

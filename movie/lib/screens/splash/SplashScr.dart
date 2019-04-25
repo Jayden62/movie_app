@@ -16,8 +16,7 @@ class SplashSrc extends BaseScreen {
   Widget onInitBody(BuildContext context) {
     return SplashScreen(
       seconds: 5,
-      navigateAfterSeconds: BlocProvider<BlocSignIn>(
-          child: SignInScreen(size), bloc: BlocSignIn()),
+      navigateAfterSeconds: BlocProvider<BlocSignIn>(child: SignInScreen(size), bloc: BlocSignIn()),
       image: Image.asset('assets/photos/photo_splash.png'),
       backgroundColor: Color.fromARGB(255, 30, 42, 58),
       styleTextUnderTheLoader: TextStyle(),

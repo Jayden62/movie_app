@@ -6,6 +6,12 @@ double heightMenu = 60.0;
 
 var sizeIcon = 26.0;
 
+TextStyle homeDefaultStyle =
+    TextStyle(color: Colors.grey);
+
+TextStyle homeHighlightStyle =
+    TextStyle(color: yellowColor);
+
 BoxShadow homeButtonBoxShadow = BoxShadow(
   color: Colors.black,
   offset: Offset(0.0, 5.0),

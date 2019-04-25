@@ -7,6 +7,7 @@ import 'package:movie/screens/movie/MovieHeader.dart';
 import 'package:movie/screens/movie/MovieItem.dart';
 import 'package:movie/screens/movie/MovieStyle.dart';
 import 'package:movie/screens/movie/ComingSoonItem.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class MovieScreen extends BaseScreen {
   final ScreenSize size;
@@ -29,7 +30,7 @@ class MovieScreen extends BaseScreen {
               initSpecial(context),
 
               /// Init coming soon
-              initComingSoon(),
+              initUpComing(),
             ]));
   }
 
@@ -53,7 +54,7 @@ class MovieScreen extends BaseScreen {
     );
   }
 
-  Widget initComingSoon() {
+  Widget initUpComing() {
     List<Widget> items = [];
     items.clear();
     items.add(ComingSoonItem(
@@ -92,23 +93,39 @@ class MovieScreen extends BaseScreen {
     List<Widget> items = [];
     items.clear();
     items.add(MovieItem(
-        'http://lestoilesheroiques.fr/wp-content/uploads/2019/03/D2HmK8zUcAAJPiq.jpg',
-        'HELL BOY',
-        'C16',
-        '2giờ 2phút 12 Thg 4, 2019'));
+        'http://lestoilesheroiques.fr/wp-content/uploads/2019/03/D2HmK8zUcAAJPiq.jpg'));
     items.add(MovieItem(
-        'http://lestoilesheroiques.fr/wp-content/uploads/2019/03/D2HmK8zUcAAJPiq.jpg',
-        'HELL BOY',
-        'C16',
-        '2giờ 2phút 12 Thg 4, 2019'));
+        'https://znews-photo.zadn.vn/w660/Uploaded/xbhunku/2019_03_15/D1nkY7UVAAUs7KN.jpg'));
+    items.add(MovieItem(
+        'https://i-ione.vnecdn.net/2019/03/12/image010-1552375474-1552375487-2146-1552375543_1200x0.png'));
+    items.add(MovieItem(
+        'https://cloud.foxrisestudio.com/public/9UUJAVSW2QXTVWUWQNJU/poster-media/190214165006_dumbo_ver3_vVPD2.jpg'));
     return Expanded(
         child: Container(
-            padding: EdgeInsets.all(normalPadding),
-            child: ListView(
-              shrinkWrap: true,
+      padding: EdgeInsets.all(normalPadding),
+      child: new PageView(
+        children: [
+          Container(
+            child: CarouselSlider(
+              items: items,
+              height: 300,
+              aspectRatio: 16 / 9,
+              viewportFraction: 0.8,
+              initialPage: 0,
+              enableInfiniteScroll: true,
+              reverse: false,
+              autoPlay: true,
+              autoPlayInterval: Duration(seconds: 3),
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              pauseAutoPlayOnTouch: Duration(seconds: 10),
+              enlargeCenterPage: true,
+              onPageChanged: (index) {},
               scrollDirection: Axis.horizontal,
-              children: items,
-            )));
+            ),
+          )
+        ],
+      ),
+    ));
   }
 
   Widget initCommonInfo(BuildContext context) {
