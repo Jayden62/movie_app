@@ -1,8 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:movie/base/screen/BaseScreen.dart';
 import 'package:movie/base/style/BaseStyle.dart';
 import 'package:movie/custom/button/Button.dart';
+import 'package:movie/middle/model/Movie.dart';
 import 'package:movie/middle/model/ScreenSize.dart';
+import 'package:movie/middle/provider/base/BlocProvider.dart';
+import 'package:movie/middle/provider/movie/BlocMovie.dart';
 import 'package:movie/screens/movie/MovieHeader.dart';
 import 'package:movie/screens/movie/MovieItem.dart';
 import 'package:movie/screens/movie/MovieStyle.dart';
@@ -17,6 +22,8 @@ class MovieScreen extends BaseScreen {
   @override
   Widget onInitBody(BuildContext context) {
     TabController tabController;
+    final BlocMovie blocMovie = BlocProvider.of<BlocMovie>(context);
+    initMovieCallback(context, blocMovie);
     return Container(
         color: Color.fromARGB(255, 30, 42, 58),
         child: TabBarView(
@@ -119,7 +126,11 @@ class MovieScreen extends BaseScreen {
               autoPlayAnimationDuration: Duration(milliseconds: 800),
               pauseAutoPlayOnTouch: Duration(seconds: 10),
               enlargeCenterPage: true,
-              onPageChanged: (index) {},
+              onPageChanged: (value) {
+                final BlocMovie blocMovie = BlocProvider.of<BlocMovie>(context);
+                blocMovie.movieSink.add(items);
+                showLoadingDialog(context);
+              },
               scrollDirection: Axis.horizontal,
             ),
           )
@@ -129,68 +140,82 @@ class MovieScreen extends BaseScreen {
   }
 
   Widget initCommonInfo(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.only(
-            left: normalMargin, right: normalMargin, bottom: normalMargin),
-        decoration: movieDecoration,
-        height: heightMovie,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(top: smallerMargin),
-                  child: Row(
+    final BlocMovie blocMovie = BlocProvider.of<BlocMovie>(context);
+    return StreamBuilder(
+        stream: blocMovie.movieController.stream,
+        builder: (BuildContext context, AsyncSnapshot<Movie> snapshot) {
+          Movie movie;
+          if (snapshot.hasData && snapshot != null) {
+            movie = snapshot.data;
+          }
+
+          return Container(
+              margin: EdgeInsets.only(
+                  left: normalMargin,
+                  right: normalMargin,
+                  bottom: normalMargin),
+              decoration: movieDecoration,
+              height: heightMovie,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        'HELL BOY',
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
+                      Container(
+                        margin: EdgeInsets.only(top: smallerMargin),
+                        child: Row(
+                          children: <Widget>[
+                            Text(
+                              movie.name,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Container(
+                                margin: EdgeInsets.only(left: smallerMargin),
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 1,
+                                      color: Color.fromARGB(255, 242, 115, 101),
+                                    ),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(4.0)),
+                                    color: Colors.transparent),
+                                child: Container(
+                                  padding: EdgeInsets.all(1.5),
+                                  child: Text(
+                                    movie.alpha,
+                                    style: TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 242, 115, 101),
+                                        fontSize: 12),
+                                  ),
+                                ))
+                          ],
+                        ),
                       ),
                       Container(
-                          margin: EdgeInsets.only(left: smallerMargin),
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                width: 1,
-                                color: Color.fromARGB(255, 242, 115, 101),
-                              ),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(4.0)),
-                              color: Colors.transparent),
-                          child: Container(
-                            padding: EdgeInsets.all(1.5),
-                            child: Text(
-                              'C16',
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 242, 115, 101),
-                                  fontSize: 12),
-                            ),
-                          ))
+                        margin: EdgeInsets.only(top: smallestMargin),
+                        child: Text(
+                          movie.time,
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 93, 104, 120),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: smallestMargin),
-                  child: Text(
-                    '2giờ 2phút 12 Thg 4, 2019',
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 93, 104, 120),
-                    ),
+                  Container(
+                    child: initBookButton(context, blocMovie),
                   ),
-                ),
-              ],
-            ),
-            Container(
-              child: initBookButton(context),
-            ),
-          ],
-        ));
+                ],
+              ));
+        });
   }
 
   /// Init book button
-  Widget initBookButton(BuildContext context) {
+  Widget initBookButton(BuildContext context, BlocMovie blocMovie) {
     return Button('Book',
         alignment: Alignment.center,
         height: 30,
@@ -209,14 +234,37 @@ class MovieScreen extends BaseScreen {
             color: Colors.grey,
             boxShadow: [buttonBoxShadow]),
         disableStyle: TextStyle(
-            color: Colors.black38, fontWeight: FontWeight.bold, fontSize: 16),
-        enable: true,
-        onPress: () {});
+            color: Colors.black38,
+            fontWeight: FontWeight.bold,
+            fontSize: 16),
+        enable: true, onPress: () {
+        });
   }
 
   @override
   PreferredSize onInitAppBar(BuildContext context) {
     return PreferredSize(
         preferredSize: Size.fromHeight(45), child: MovieHeader());
+  }
+
+  void initMovieCallback(BuildContext context, BlocMovie blocMovie) {
+    blocMovie.movieCallback = (data) async {
+      hideLoadingDialog(context);
+
+      if (data.isNotEmpty) {
+//        pushScreen(context, HomeScreen(size, userNameController.text));
+        hideLoadingDialog(context);
+      } else {
+        showMessageDialog(context, 'Can not load data.');
+      }
+
+//      if (data == null) {
+//        return;
+//      } else if( data == "admin"){
+//
+//        pushScreen(context, HomeScreen(size, userNameController.text));
+//      }
+//      hideLoadingDialog(context);
+    };
   }
 }

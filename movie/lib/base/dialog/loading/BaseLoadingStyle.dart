@@ -16,6 +16,6 @@ EdgeInsets waitingMargin = EdgeInsets.only(
 TextStyle loadingStyle =
     TextStyle(fontWeight: FontWeight.bold, color: colorLoading);
 
-TextStyle waitingStyle = TextStyle(color: colorLoading);
+TextStyle waitingStyle = TextStyle(color: Colors.white,fontSize: 16);
 
 

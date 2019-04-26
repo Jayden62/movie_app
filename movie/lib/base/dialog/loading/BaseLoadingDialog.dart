@@ -16,27 +16,31 @@ class BaseLoadingDialog {
     /// Create dialog.
     SimpleDialog loadingDialog = SimpleDialog(
       contentPadding: contentPadding,
+      backgroundColor: Color.fromARGB(255, 30, 42, 58),
       shape: roundCorner,
       children: <Widget>[
         Row(
           children: <Widget>[
             CircularProgressIndicator(
-                valueColor: new AlwaysStoppedAnimation<Color>(colorLoading)),
+                valueColor: AlwaysStoppedAnimation<Color>(
+                    Color.fromARGB(255, 93, 104, 120))),
             Expanded(
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  margin: loadingMargin,
-                  child: Text(
-                    '',
-                    style: loadingStyle,
-                  ),
-                ),
+//                Container(
+//                  margin: loadingMargin,
+//                  color: Color.fromARGB(255, 30, 42, 58),
+//                  child: Text(
+//                    '',
+//                    style: loadingStyle,
+//                  ),
+//                ),
                 Container(
                   margin: waitingMargin,
+                  color: Color.fromARGB(255, 30, 42, 58),
                   child: Text(
-                    '',
+                    ' Loading ... ',
                     style: waitingStyle,
                   ),
                 ),

@@ -38,13 +38,20 @@ class SignInScreen extends BaseScreen {
 
   void initSignInCallback(BuildContext context, BlocSignIn blocSignIn) {
     blocSignIn.signInCallback = (data) async {
-      hideLoadingDialog(context);
-      if (data == null) {
-        showMessageDialog(context, 'Can not login with this account.');
-        return;
+      if (data == true) {
+        pushScreen(context, HomeScreen(size, userNameController.text));
+//        hideLoadingDialog(context);
       } else {
-        pushScreen(context, HomeScreen(size,userNameController.text));
+        showMessageDialog(context, 'Can not login with this account.');
       }
+
+//      if (data == null) {
+//        return;
+//      } else if( data == "admin"){
+//
+//        pushScreen(context, HomeScreen(size, userNameController.text));
+//      }
+//      hideLoadingDialog(context);
     };
   }
 

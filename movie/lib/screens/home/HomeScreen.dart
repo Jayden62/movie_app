@@ -4,6 +4,7 @@ import 'package:movie/base/style/BaseStyle.dart';
 import 'package:movie/custom/button/Button.dart';
 import 'package:movie/custom/slide/Slide.dart';
 import 'package:movie/middle/provider/base/BlocProvider.dart';
+import 'package:movie/middle/provider/movie/BlocMovie.dart';
 import 'package:movie/middle/provider/signin/BlocSignIn.dart';
 import 'package:movie/screens/home/HomeHeader.dart';
 import 'package:movie/screens/home/HomeStyle.dart';
@@ -125,7 +126,11 @@ class HomeScreen extends BaseScreen {
 
   /// Init pages
   Widget initPages(BuildContext context) {
-    List<Widget> widgets = [MovieScreen(size), PromotionScreen()];
+    List<Widget> widgets = [
+      BlocProvider<BlocMovie>(
+          child:  MovieScreen(size), bloc: BlocMovie()),
+
+    PromotionScreen()];
     return Expanded(child: Slide(size, widgets, (value) {}));
   }
 
