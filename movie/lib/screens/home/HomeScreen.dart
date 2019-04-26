@@ -4,6 +4,7 @@ import 'package:movie/base/style/BaseStyle.dart';
 import 'package:movie/custom/button/Button.dart';
 import 'package:movie/custom/slide/Slide.dart';
 import 'package:movie/middle/provider/base/BlocProvider.dart';
+import 'package:movie/middle/provider/home/BlocHome.dart';
 import 'package:movie/middle/provider/movie/BlocMovie.dart';
 import 'package:movie/middle/provider/signin/BlocSignIn.dart';
 import 'package:movie/screens/home/HomeHeader.dart';
@@ -47,11 +48,15 @@ class HomeScreen extends BaseScreen {
         height: heightMenu,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[initMovie(), initTheater(), initPromotion()],
+          children: <Widget>[
+            initMovie(context),
+            initTheater(context),
+            initPromotion(context)
+          ],
         ));
   }
 
-  Widget initMovie() {
+  Widget initMovie(BuildContext context) {
 //    return Container(
 ////        margin: EdgeInsets.only(top: smallestMargin),
 ////        child: Column(
@@ -76,62 +81,79 @@ class HomeScreen extends BaseScreen {
         highlightStyle: homeDefaultStyle,
         enable: true, onPress: () {
       /// Get bloc
-//          final BlocHome blocHome = BlocProvider.of<BlocHome>(context);
-//          blocHome.homePageController.sink.add(1.0);
+      final BlocHome blocHome = BlocProvider.of<BlocHome>(context);
+      blocHome.homePageController.sink.add(1.0);
     },
         iconButton: Button.IconButton('assets/photo/ic_event_highlight.png',
             Button.IconPosition.top, sizeIcon, sizeIcon,
             iconHighlight: 'assets/photo/ic_event_default.png'));
   }
 
-  Widget initTheater() {
-    return Container(
-        margin: EdgeInsets.only(top: smallestMargin),
-        child: Column(
-          children: <Widget>[
-            Icon(
-              Icons.theaters,
-              color: Colors.grey,
-              size: sizeIcon,
-            ),
-            Container(
-              child: Text(
-                'Theaters',
-                style: TextStyle(color: Colors.grey),
-              ),
-            ),
-          ],
-        ));
+  Widget initTheater(BuildContext context) {
+    return Button.Button('Theaters',
+        alignment: Alignment.center,
+        height: largeButtonHeight,
+        defaultStyle: homeHighlightStyle,
+        highlightStyle: homeDefaultStyle,
+        enable: true, onPress: () {
+      /// Get bloc
+      final BlocHome blocHome = BlocProvider.of<BlocHome>(context);
+      blocHome.homePageController.sink.add(2.0);
+    },
+        iconButton: Button.IconButton('assets/photo/ic_event_highlight.png',
+            Button.IconPosition.top, sizeIcon, sizeIcon,
+            iconHighlight: 'assets/photo/ic_event_default.png'));
   }
 
-  Widget initPromotion() {
-    return Container(
-        margin: EdgeInsets.only(top: smallestMargin),
-        child: Column(
-          children: <Widget>[
-            Icon(
-              Icons.card_giftcard,
-              color: Colors.grey,
-              size: sizeIcon,
-            ),
-            Container(
-              child: Text(
-                'Promotions',
-                style: TextStyle(color: Colors.grey),
-              ),
-            ),
-          ],
-        ));
+  Widget initPromotion(BuildContext context) {
+//    return GestureDetector(
+//      onTap: () => pushScreen(context, PromotionScreen()),
+//      child: Container(
+//          margin: EdgeInsets.only(top: smallestMargin),
+//          child: Column(
+//            children: <Widget>[
+//              Icon(
+//                Icons.card_giftcard,
+//                color: Colors.grey,
+//                size: sizeIcon,
+//              ),
+//              Container(
+//                child: Text(
+//                  'Promotions',
+//                  style: TextStyle(color: Colors.grey),
+//                ),
+//              ),
+//            ],
+//          )),
+//    );
+
+    return Button.Button('Promotion',
+        alignment: Alignment.center,
+        height: largeButtonHeight,
+        defaultStyle: homeHighlightStyle,
+        highlightStyle: homeDefaultStyle,
+        enable: true, onPress: () {
+      final BlocHome blocHome = BlocProvider.of<BlocHome>(context);
+      blocHome.homePageController.sink.add(3.0);
+    },
+        iconButton: Button.IconButton('assets/photo/ic_event_highlight.png',
+            Button.IconPosition.top, sizeIcon, sizeIcon,
+            iconHighlight: 'assets/photo/ic_event_default.png'));
   }
 
   /// Init pages
   Widget initPages(BuildContext context) {
     List<Widget> widgets = [
-      BlocProvider<BlocMovie>(
-          child:  MovieScreen(size), bloc: BlocMovie()),
-
-    PromotionScreen()];
-    return Expanded(child: Slide(size, widgets, (value) {}));
+      BlocProvider<BlocMovie>(child: MovieScreen(size), bloc: BlocMovie()),
+      PromotionScreen()
+    ];
+    return Expanded(
+        child: Slide(
+      size,
+      widgets,
+      (value) {},
+      isScrolled: false,
+    ));
   }
 
   @override

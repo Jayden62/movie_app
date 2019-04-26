@@ -128,7 +128,7 @@ class MovieScreen extends BaseScreen {
               enlargeCenterPage: true,
               onPageChanged: (value) {
                 final BlocMovie blocMovie = BlocProvider.of<BlocMovie>(context);
-                blocMovie.movieSink.add(items);
+                blocMovie.movieSink.add("Value $value");
                 showLoadingDialog(context);
               },
               scrollDirection: Axis.horizontal,
@@ -141,77 +141,136 @@ class MovieScreen extends BaseScreen {
 
   Widget initCommonInfo(BuildContext context) {
     final BlocMovie blocMovie = BlocProvider.of<BlocMovie>(context);
-    return StreamBuilder(
-        stream: blocMovie.movieController.stream,
-        builder: (BuildContext context, AsyncSnapshot<Movie> snapshot) {
-          Movie movie;
-          if (snapshot.hasData && snapshot != null) {
-            movie = snapshot.data;
-          }
+//    return StreamBuilder(
+//        stream: blocMovie.movieController.stream,
+//        builder: (BuildContext context, AsyncSnapshot<Movie> snapshot) {
+//          Movie movie;
+//          if (snapshot.hasData && snapshot != null) {
+//            movie = snapshot.data;
+//          }
+//
+//          return Container(
+//              margin: EdgeInsets.only(
+//                  left: normalMargin,
+//                  right: normalMargin,
+//                  bottom: normalMargin),
+//              decoration: movieDecoration,
+//              height: heightMovie,
+//              child: Row(
+//                mainAxisAlignment: MainAxisAlignment.spaceAround,
+//                children: <Widget>[
+//                  Column(
+//                    crossAxisAlignment: CrossAxisAlignment.start,
+//                    children: <Widget>[
+//                      Container(
+//                        margin: EdgeInsets.only(top: smallerMargin),
+//                        child: Row(
+//                          children: <Widget>[
+//                            Text(
+//                              movie.name,
+//                              style: TextStyle(
+//                                  color: Colors.white,
+//                                  fontWeight: FontWeight.bold),
+//                            ),
+//                            Container(
+//                                margin: EdgeInsets.only(left: smallerMargin),
+//                                decoration: BoxDecoration(
+//                                    border: Border.all(
+//                                      width: 1,
+//                                      color: Color.fromARGB(255, 242, 115, 101),
+//                                    ),
+//                                    borderRadius:
+//                                        BorderRadius.all(Radius.circular(4.0)),
+//                                    color: Colors.transparent),
+//                                child: Container(
+//                                  padding: EdgeInsets.all(1.5),
+//                                  child: Text(
+//                                    movie.alpha,
+//                                    style: TextStyle(
+//                                        color:
+//                                            Color.fromARGB(255, 242, 115, 101),
+//                                        fontSize: 12),
+//                                  ),
+//                                ))
+//                          ],
+//                        ),
+//                      ),
+//                      Container(
+//                        margin: EdgeInsets.only(top: smallestMargin),
+//                        child: Text(
+//                          movie.time,
+//                          style: TextStyle(
+//                            color: Color.fromARGB(255, 93, 104, 120),
+//                          ),
+//                        ),
+//                      ),
+//                    ],
+//                  ),
+//                  Container(
+//                    child: initBookButton(context, blocMovie),
+//                  ),
+//                ],
+//              ));
+//        });
 
-          return Container(
-              margin: EdgeInsets.only(
-                  left: normalMargin,
-                  right: normalMargin,
-                  bottom: normalMargin),
-              decoration: movieDecoration,
-              height: heightMovie,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+    return Container(
+        margin: EdgeInsets.only(
+            left: normalMargin, right: normalMargin, bottom: normalMargin),
+        decoration: movieDecoration,
+        height: heightMovie,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(top: smallerMargin),
+                  child: Row(
                     children: <Widget>[
+                      Text(
+                        'HELL BOY',
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
                       Container(
-                        margin: EdgeInsets.only(top: smallerMargin),
-                        child: Row(
-                          children: <Widget>[
-                            Text(
-                              movie.name,
+                          margin: EdgeInsets.only(left: smallerMargin),
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 1,
+                                color: Color.fromARGB(255, 242, 115, 101),
+                              ),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4.0)),
+                              color: Colors.transparent),
+                          child: Container(
+                            padding: EdgeInsets.all(1.5),
+                            child: Text(
+                              'C16',
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                                  color: Color.fromARGB(255, 242, 115, 101),
+                                  fontSize: 12),
                             ),
-                            Container(
-                                margin: EdgeInsets.only(left: smallerMargin),
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                      width: 1,
-                                      color: Color.fromARGB(255, 242, 115, 101),
-                                    ),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(4.0)),
-                                    color: Colors.transparent),
-                                child: Container(
-                                  padding: EdgeInsets.all(1.5),
-                                  child: Text(
-                                    movie.alpha,
-                                    style: TextStyle(
-                                        color:
-                                            Color.fromARGB(255, 242, 115, 101),
-                                        fontSize: 12),
-                                  ),
-                                ))
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: smallestMargin),
-                        child: Text(
-                          movie.time,
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 93, 104, 120),
-                          ),
-                        ),
-                      ),
+                          ))
                     ],
                   ),
-                  Container(
-                    child: initBookButton(context, blocMovie),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: smallestMargin),
+                  child: Text(
+                    '2giờ 2phút',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 93, 104, 120),
+                    ),
                   ),
-                ],
-              ));
-        });
+                ),
+              ],
+            ),
+            Container(
+              child: initBookButton(context, blocMovie),
+            ),
+          ],
+        ));
   }
 
   /// Init book button
@@ -234,11 +293,9 @@ class MovieScreen extends BaseScreen {
             color: Colors.grey,
             boxShadow: [buttonBoxShadow]),
         disableStyle: TextStyle(
-            color: Colors.black38,
-            fontWeight: FontWeight.bold,
-            fontSize: 16),
-        enable: true, onPress: () {
-        });
+            color: Colors.black38, fontWeight: FontWeight.bold, fontSize: 16),
+        enable: true,
+        onPress: () {});
   }
 
   @override

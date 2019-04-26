@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class DateUtil {
   static String time;
 
@@ -13,5 +15,10 @@ class DateUtil {
     return '${date.hour}h${date.minute}';
   }
 
-
+  String getCurrentDate() {
+    var now = DateTime.now();
+    var formatter = DateFormat(' EEEEE MMM dd yyyy ');
+    String currentDate = formatter.format(now);
+    return currentDate;
+  }
 }

@@ -9,6 +9,7 @@ import 'package:movie/screens/promotion/PromotionScreen.dart';
 import 'package:movie/screens/signin/SignInScreen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:movie/screens/splash/SplashScr.dart';
+import 'package:movie/screens/theater/TheaterScreen.dart';
 import 'package:movie/utils/LocalizationsDelegateUtil.dart';
 
 void main() async {
@@ -53,7 +54,7 @@ class MainScreen extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
 //        home: BlocProvider<BlocSignIn>(child: SignInScreen(size), bloc: BlocSignIn())
-      home: SplashSrc(size),
+      home: TheaterScreen(),
     );
   }
 }
