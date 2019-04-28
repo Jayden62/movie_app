@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:movie/base/item/BaseItem.dart';
 import 'package:movie/base/style/BaseStyle.dart';
-import 'package:movie/screens/theater/ScheduleItem.dart';
+import 'package:movie/screens/booking/ScheduleItem.dart';
 
-class TheaterItem extends BaseItem {
+class BookingItem extends BaseItem {
   final String theaterName;
   final String distance;
   final String time;
 
-  TheaterItem(this.theaterName, this.distance, this.time);
+  BookingItem(this.theaterName, this.distance, this.time);
 
   @override
   Widget onInitBody(BuildContext context) {

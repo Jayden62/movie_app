@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:movie/base/screen/BaseScreen.dart';
 import 'package:movie/base/style/BaseStyle.dart';
-import 'package:movie/screens/theater/DateItem.dart';
-import 'package:movie/screens/theater/ScheduleItem.dart';
-import 'package:movie/screens/theater/TheaterItem.dart';
+import 'package:movie/screens/booking/DateItem.dart';
+import 'package:movie/screens/booking/ScheduleItem.dart';
+import 'package:movie/screens/booking/BookingItem.dart';
 import 'package:movie/utils/DateUtil.dart';
 
-class TheaterScreen extends BaseScreen {
+class BookingScreen extends BaseScreen {
   @override
   Widget onInitBody(BuildContext context) {
     return Container(
@@ -122,8 +122,8 @@ class TheaterScreen extends BaseScreen {
 
   Widget initListTheater() {
     List<Widget> items = [];
-    items.add(TheaterItem(' NewWork ', '100', '18:30'));
-    items.add(TheaterItem(' NewWork ', '100', '21:10'));
+    items.add(BookingItem(' NewWork ', '100', '18:30'));
+    items.add(BookingItem(' NewWork ', '100', '21:10'));
     return Container(
       child: ListView(
         shrinkWrap: true,

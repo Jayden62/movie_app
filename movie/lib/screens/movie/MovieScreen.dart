@@ -260,7 +260,7 @@ class MovieScreen extends BaseScreen {
                   child: Text(
                     '2giờ 2phút',
                     style: TextStyle(
-                      color: Color.fromARGB(255, 93, 104, 120),
+                      color: Colors.grey,
                     ),
                   ),
                 ),
