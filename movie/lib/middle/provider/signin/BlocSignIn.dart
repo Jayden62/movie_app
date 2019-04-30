@@ -12,8 +12,7 @@ class BlocSignIn extends BlocBase {
 
   Stream<bool> get signInEnabledStream => signInEnabledController.stream;
 
-  StreamController<Data<List<String>>> inputSignInController =
-      StreamController();
+  StreamController<Data<List<String>>> inputSignInController = StreamController();
 
   StreamSink get inputSignInSink => inputSignInController.sink;
 

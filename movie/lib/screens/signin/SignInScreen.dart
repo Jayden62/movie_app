@@ -5,6 +5,7 @@ import 'package:movie/custom/button/Button.dart';
 import 'package:movie/middle/model/Data.dart';
 import 'package:movie/middle/model/ScreenSize.dart';
 import 'package:movie/middle/provider/base/BlocProvider.dart';
+import 'package:movie/middle/provider/home/BlocHome.dart';
 import 'package:movie/middle/provider/signin/BlocSignIn.dart';
 import 'package:movie/screens/home/HomeScreen.dart';
 
@@ -39,7 +40,11 @@ class SignInScreen extends BaseScreen {
   void initSignInCallback(BuildContext context, BlocSignIn blocSignIn) {
     blocSignIn.signInCallback = (data) async {
       if (data == true) {
-        pushScreen(context, HomeScreen(size, userNameController.text));
+        pushScreen(
+            context,
+            BlocProvider<BlocHome>(
+                child: HomeScreen(size, userNameController.text),
+                bloc: BlocHome()));
 //        hideLoadingDialog(context);
       } else {
         showMessageDialog(context, 'Can not login with this account.');

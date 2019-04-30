@@ -4,17 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:movie/middle/provider/base/BlocProvider.dart';
 
 class BlocHome extends BlocBase {
-  StreamController<double> homePageController;
+  StreamController<int> homeController = StreamController();
 
-  /// Init home page controller.
-  void initHomePageController() {
-    homePageController = StreamController();
-  }
+  StreamSink get homeSink => homeController.sink;
+
+  Stream<int> get homeStream => homeController.stream;
 
   @override
   void dispose() {
-    if (homePageController != null) {
-      homePageController.close();
-    }
+    homeController.close();
   }
 }

@@ -7,22 +7,25 @@ import 'package:movie/middle/model/Movie.dart';
 import 'package:movie/middle/provider/base/BlocProvider.dart';
 
 class BlocMovie extends BlocBase {
+  StreamController<bool> loadDataController = StreamController();
+  StreamController<Movie> infoController = StreamController();
+  StreamController<List<Movie>> photoController = StreamController();
 
-  StreamController<Movie> movieController = StreamController();
-
-  StreamSink get movieSink => movieController.sink;
-
-  ValueChanged<List<Movie>> movieCallback;
+  ValueChanged<Movie> movieCallback;
 
   BlocMovie() {
-    movieController.stream.listen((data) async {
-      final result = await API.instance.getMovies(data);
-      movieCallback(result);
+    loadDataController.stream.listen((data) async {
+      if (data) {
+        final result = await API.instance.getMovies();
+        photoController.sink.add(result);
+      }
     });
   }
 
   @override
   void dispose() {
-    movieController.close();
+    loadDataController.close();
+    photoController.close();
+    infoController.close();
   }
 }

@@ -36,7 +36,6 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget screen;
     return MaterialApp(
       /// Localization, support english and vietnamese languages
       localizationsDelegates: [
@@ -54,7 +53,7 @@ class MainScreen extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
 //        home: BlocProvider<BlocSignIn>(child: SignInScreen(size), bloc: BlocSignIn())
-      home: BookingScreen(),
+      home: SplashSrc(size),
     );
   }
 }

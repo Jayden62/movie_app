@@ -24,14 +24,18 @@ class API {
     return false;
   }
 
-  Future<List<Movie>> getMovies(Movie movie) async {
+  Future<List<Movie>> getMovies() async {
     try {
       List<Movie> movies = [];
 
-      movies.add(Movie('HELL BOY', 'C16', '2giờ 2phút '));
-      movies.add(Movie('END GAME', 'C18', '3giờ 2phút '));
-      movies.add(Movie('LẬT MẶT 4', 'C11', '1giờ 40phút '));
-      movies.add(Movie('QUÝ CÔ LỪA ĐẢO', 'C22', '1giờ 58phút'));
+      movies.add(Movie('HELL BOY', 'C16', '2giờ 2phút ',
+          'http://lestoilesheroiques.fr/wp-content/uploads/2019/03/D2HmK8zUcAAJPiq.jpg'));
+      movies.add(Movie('END GAME', 'C18', '3giờ 2phút ',
+          'https://znews-photo.zadn.vn/w660/Uploaded/xbhunku/2019_03_15/D1nkY7UVAAUs7KN.jpg'));
+      movies.add(Movie('LẬT MẶT 4', 'C11', '1giờ 40phút ',
+          'https://i-ione.vnecdn.net/2019/03/12/image010-1552375474-1552375487-2146-1552375543_1200x0.png'));
+      movies.add(Movie('QUÝ CÔ LỪA ĐẢO', 'C22', '1giờ 58phút',
+          'https://reviewphimaz.com/wp-content/uploads/2018/05/15-bo-phim-hai-khong-the-bo-qua-nam-2018-12.jpg'));
 
       return movies;
     } catch (e) {}

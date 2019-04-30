@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:movie/base/screen/BaseScreen.dart';
 import 'package:movie/base/style/BaseStyle.dart';
-import 'package:movie/custom/button/Button.dart';
-import 'package:movie/custom/slide/Slide.dart';
 import 'package:movie/middle/provider/base/BlocProvider.dart';
 import 'package:movie/middle/provider/home/BlocHome.dart';
 import 'package:movie/middle/provider/movie/BlocMovie.dart';
 import 'package:movie/middle/provider/signin/BlocSignIn.dart';
 import 'package:movie/screens/home/HomeHeader.dart';
-import 'package:movie/screens/home/HomeStyle.dart';
 import 'package:movie/screens/menu/MenuItem.dart';
 import 'package:movie/screens/movie/MovieScreen.dart';
 import 'package:movie/screens/promotion/PromotionScreen.dart';
@@ -16,144 +13,76 @@ import 'package:movie/screens/signin/SignInScreen.dart';
 import 'package:movie/custom/button/Button.dart' as Button;
 import 'package:movie/custom/iconbutton/IconButton.dart' as IconButton;
 import 'package:movie/middle/model/ScreenSize.dart';
-import 'package:movie/screens/splash/SplashScr.dart';
+import 'package:movie/screens/theater/TheaterScreen.dart';
 
 class HomeScreen extends BaseScreen {
   final ScreenSize size;
   final String userName;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  final int currentIndex = 0;
 
+  /// Constructor
   HomeScreen(this.size, this.userName);
 
   @override
   Widget onInitBody(BuildContext context) {
-    return Container(
-      color: Color.fromARGB(255, 30, 42, 58),
-      child: Column(
-        children: <Widget>[
-          /// Init pages
-          initPages(context),
-
-          /// Init menu
-          initMenu(context)
-        ],
-      ),
-    );
-  }
-
-  /// Init menu
-  Widget initMenu(BuildContext context) {
-    return Container(
-        decoration: homeMenuDecoration,
-        height: heightMenu,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            initMovie(context),
-            initTheater(context),
-            initPromotion(context)
-          ],
-        ));
-  }
-
-  Widget initMovie(BuildContext context) {
-//    return Container(
-////        margin: EdgeInsets.only(top: smallestMargin),
-////        child: Column(
-////          children: <Widget>[
-////            Icon(
-////              Icons.movie_creation,
-////              color: yellowColor,
-////              size: sizeIcon,
-////            ),
-////            Container(
-////              child: Text(
-////                'Movies',
-////                style: TextStyle(color: yellowColor),
-////              ),
-////            ),
-////          ],
-////        ));
-    return Button.Button('Movie',
-        alignment: Alignment.center,
-        height: largeButtonHeight,
-        defaultStyle: homeHighlightStyle,
-        highlightStyle: homeDefaultStyle,
-        enable: true, onPress: () {
-      /// Get bloc
-      final BlocHome blocHome = BlocProvider.of<BlocHome>(context);
-      blocHome.homePageController.sink.add(1.0);
-    },
-        iconButton: Button.IconButton('assets/photo/ic_event_highlight.png',
-            Button.IconPosition.top, sizeIcon, sizeIcon,
-            iconHighlight: 'assets/photo/ic_event_default.png'));
-  }
-
-  Widget initTheater(BuildContext context) {
-    return Button.Button('Theaters',
-        alignment: Alignment.center,
-        height: largeButtonHeight,
-        defaultStyle: homeHighlightStyle,
-        highlightStyle: homeDefaultStyle,
-        enable: true, onPress: () {
-      /// Get bloc
-      final BlocHome blocHome = BlocProvider.of<BlocHome>(context);
-      blocHome.homePageController.sink.add(2.0);
-    },
-        iconButton: Button.IconButton('assets/photo/ic_event_highlight.png',
-            Button.IconPosition.top, sizeIcon, sizeIcon,
-            iconHighlight: 'assets/photo/ic_event_default.png'));
-  }
-
-  Widget initPromotion(BuildContext context) {
-//    return GestureDetector(
-//      onTap: () => pushScreen(context, PromotionScreen()),
-//      child: Container(
-//          margin: EdgeInsets.only(top: smallestMargin),
-//          child: Column(
-//            children: <Widget>[
-//              Icon(
-//                Icons.card_giftcard,
-//                color: Colors.grey,
-//                size: sizeIcon,
-//              ),
-//              Container(
-//                child: Text(
-//                  'Promotions',
-//                  style: TextStyle(color: Colors.grey),
-//                ),
-//              ),
-//            ],
-//          )),
-//    );
-
-    return Button.Button('Promotion',
-        alignment: Alignment.center,
-        height: largeButtonHeight,
-        defaultStyle: homeHighlightStyle,
-        highlightStyle: homeDefaultStyle,
-        enable: true, onPress: () {
-      final BlocHome blocHome = BlocProvider.of<BlocHome>(context);
-      blocHome.homePageController.sink.add(3.0);
-    },
-        iconButton: Button.IconButton('assets/photo/ic_event_highlight.png',
-            Button.IconPosition.top, sizeIcon, sizeIcon,
-            iconHighlight: 'assets/photo/ic_event_default.png'));
-  }
-
-  /// Init pages
-  Widget initPages(BuildContext context) {
+    final BlocHome blocHome = BlocProvider.of<BlocHome>(context);
+    int index = 0;
     List<Widget> widgets = [
       BlocProvider<BlocMovie>(child: MovieScreen(size), bloc: BlocMovie()),
+      TheaterScreen(),
       PromotionScreen()
     ];
-    return Expanded(
-        child: Slide(
-      size,
-      widgets,
-      (value) {},
-      isScrolled: false,
-    ));
+    return Container(
+        color: Color.fromARGB(255, 30, 42, 58),
+        child: StreamBuilder(
+            stream: blocHome.homeStream,
+            builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+              if (snapshot.hasData && snapshot.data != 0) {
+                print('value is $snapshot');
+                index = snapshot.data;
+              }
+              return widgets[index];
+            }));
+  }
+
+  /// Init bottom
+  @override
+  Widget onInitBottomNavigationBar(BuildContext context) {
+    final BlocHome blocHome = BlocProvider.of<BlocHome>(context);
+
+    return BottomNavigationBar(
+      onTap: (value) {
+        blocHome.homeSink.add(value);
+      },
+      // new
+      currentIndex: currentIndex,
+      backgroundColor: Color.fromARGB(255, 30, 42, 58),
+      unselectedItemColor: Colors.grey,
+      fixedColor: yellowColor,
+      type: BottomNavigationBarType.fixed,
+      items: [
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.movie_creation,
+          ),
+          title: Text(
+            'Movie',
+          ),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.theaters,
+          ),
+          title: Text('Theater'),
+        ),
+        BottomNavigationBarItem(
+            icon: Icon(
+              Icons.card_giftcard,
+            ),
+            title: Text('Promotion'))
+      ],
+    );
   }
 
   @override
@@ -278,24 +207,6 @@ class HomeScreen extends BaseScreen {
 
               /// Log out
               Expanded(
-//            child: Container(
-//              margin: EdgeInsets.only(right: normalMargin),
-//              child: Row(
-//                mainAxisAlignment: MainAxisAlignment.end,
-//                children: <Widget>[
-//                  Container(
-//                    margin: EdgeInsets.only(right: smallerMargin),
-//                    child: Icon(Icons.fast_rewind,
-//                        color: Color.fromARGB(255, 19, 158, 214)),
-//                  ),
-//                  Text(
-//                    'Log out',
-//                    style: TextStyle(
-//                        fontSize: 16, color: Color.fromARGB(255, 19, 158, 214)),
-//                  )
-//                ],
-//              ),
-//            ),
                 child: Button.Button(
                   'Log out',
                   alignment: Alignment.center,
@@ -332,7 +243,6 @@ class HomeScreen extends BaseScreen {
           onLeftPress: () {
             print('open drawer.');
             scaffoldKey.currentState.openDrawer();
-//            Scaffold.of(context).openDrawer();
           },
           onRightPress: () {},
         ));

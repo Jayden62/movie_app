@@ -25,7 +25,8 @@ class MovieHeader extends BaseHeader {
     return Container(
       margin: EdgeInsets.only(bottom: normalMargin),
       child: Text(
-        title,style: TextStyle(fontSize: 16),
+        title,
+        style: TextStyle(fontSize: 16),
       ),
     );
   }
