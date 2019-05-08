@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:movie/base/screen/BaseScreen.dart';
 import 'package:movie/base/style/BaseStyle.dart';
+import 'package:movie/middle/model/Movie.dart';
+import 'package:movie/screens/booking/BookingHeader.dart';
 import 'package:movie/screens/booking/DateItem.dart';
 import 'package:movie/screens/booking/ScheduleItem.dart';
 import 'package:movie/screens/booking/BookingItem.dart';
 import 'package:movie/utils/DateUtil.dart';
 
 class BookingScreen extends BaseScreen {
+  final Movie item;
+
+  BookingScreen(this.item);
+
   @override
   Widget onInitBody(BuildContext context) {
     return Container(
@@ -14,7 +20,6 @@ class BookingScreen extends BaseScreen {
         color: Color.fromARGB(255, 30, 42, 58),
         child: ListView(
           children: <Widget>[
-            initName(),
             initFormat(),
             initSchedule(),
             initDate(),
@@ -25,22 +30,8 @@ class BookingScreen extends BaseScreen {
         ));
   }
 
-  Widget initName() {
-    return Container(
-      margin: EdgeInsets.only(top: smallerMargin),
-      child: Center(
-        child: Text(
-          'END GAME',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 24, color: yellowColor),
-        ),
-      ),
-    );
-  }
-
   Widget initFormat() {
     return Container(
-      margin: EdgeInsets.only(top: normalMargin),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -124,6 +115,8 @@ class BookingScreen extends BaseScreen {
     List<Widget> items = [];
     items.add(BookingItem(' NewWork ', '100', '18:30'));
     items.add(BookingItem(' NewWork ', '100', '21:10'));
+    items.add(BookingItem(' NewWork ', '100', '21:10'));
+    items.add(BookingItem(' NewWork ', '100', '21:10'));
     return Container(
       child: ListView(
         shrinkWrap: true,
@@ -147,5 +140,17 @@ class BookingScreen extends BaseScreen {
       day,
       style: TextStyle(color: Color.fromARGB(255, 145, 140, 136), fontSize: 16),
     );
+  }
+
+  @override
+  PreferredSize onInitAppBar(BuildContext context) {
+    return PreferredSize(
+        preferredSize: Size.fromHeight(appBarHeight),
+        child: BookingHeader(
+          item.name,
+          onLeftPress: () {
+            popScreen(context);
+          },
+        ));
   }
 }

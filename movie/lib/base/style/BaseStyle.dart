@@ -257,7 +257,7 @@ TextStyle disableStyle = TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: largerFont);
 
-Color darkColor = Color.fromARGB(255, 23,36,48);
+Color darkColor = Color.fromARGB(255, 23, 36, 48);
 double radius = 20.0;
 BoxDecoration userNameBoxDecoration = BoxDecoration(
     shape: BoxShape.rectangle,
@@ -291,11 +291,11 @@ OutlineInputBorder outlineInputBorder = OutlineInputBorder(
 
 /// Default background of button
 BoxDecoration defaultSwitchDecoration = BoxDecoration(
-    borderRadius: BorderRadius.all(Radius.circular(largestRadius)),
-    color: greenColor);
+    borderRadius: BorderRadius.all(Radius.circular(30)),
+    color: Color.fromARGB(255, 173, 168, 117));
 
 BoxDecoration defaultActiveSwitchItemDecoration = BoxDecoration(
-    borderRadius: BorderRadius.all(Radius.circular(largestRadius)),
+    borderRadius: BorderRadius.all(Radius.circular(30)),
     gradient: LinearGradient(
       begin: FractionalOffset.topCenter,
       end: FractionalOffset.bottomCenter,
@@ -303,8 +303,8 @@ BoxDecoration defaultActiveSwitchItemDecoration = BoxDecoration(
     ));
 
 BoxDecoration defaultInactiveSwitchItemDecoration = BoxDecoration(
-    borderRadius: BorderRadius.all(Radius.circular(largestRadius)),
-    color: greenColor);
+    borderRadius: BorderRadius.all(Radius.circular(30)),
+    color: Color.fromARGB(255, 173, 168, 117));
 
 TextStyle defaultActiveSwitchItemStyle =
     TextStyle(color: Colors.black, fontWeight: FontWeight.bold);

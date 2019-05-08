@@ -26,12 +26,12 @@ class ScheduleItem extends BaseItem {
                 width: 1,
                 color: Color.fromARGB(255, 209, 159, 89),
               )),
-          highlightDecoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(8)),
-            border: Border.all(width: 1, color: Colors.grey),
-          ),
-          highlightStyle: TextStyle(
-              color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 16),
+//          highlightDecoration: BoxDecoration(
+//            borderRadius: BorderRadius.all(Radius.circular(8)),
+//            border: Border.all(width: 1, color: Colors.grey),
+//          ),
+//          highlightStyle: TextStyle(
+//              color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 16),
           enable: true,
           onPress: () {}),
     );

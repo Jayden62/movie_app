@@ -8,6 +8,7 @@ import 'package:movie/middle/provider/base/BlocProvider.dart';
 
 class BlocMovie extends BlocBase {
   StreamController<bool> loadDataController = StreamController();
+
   StreamController<Movie> infoController = StreamController();
   StreamController<List<Movie>> photoController = StreamController();
 

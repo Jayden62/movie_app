@@ -8,6 +8,7 @@ import 'package:movie/middle/model/Movie.dart';
 import 'package:movie/middle/model/ScreenSize.dart';
 import 'package:movie/middle/provider/base/BlocProvider.dart';
 import 'package:movie/middle/provider/movie/BlocMovie.dart';
+import 'package:movie/screens/booking/BookingScreen.dart';
 import 'package:movie/screens/movie/MovieHeader.dart';
 import 'package:movie/screens/movie/MovieItem.dart';
 import 'package:movie/screens/movie/MovieStyle.dart';
@@ -227,7 +228,7 @@ class MovieScreen extends BaseScreen {
                     ],
                   ),
                   Container(
-                    child: initBookButton(context, blocMovie),
+                    child: initBookButton(context, blocMovie, movie),
                   ),
                 ],
               ));
@@ -364,7 +365,7 @@ class MovieScreen extends BaseScreen {
                     ],
                   ),
                   Container(
-                    child: initBookButton(context, blocMovie),
+                    child: initBookButton(context, blocMovie, movie),
                   ),
                 ],
               ));
@@ -372,7 +373,8 @@ class MovieScreen extends BaseScreen {
   }
 
   /// Init book button
-  Widget initBookButton(BuildContext context, BlocMovie blocMovie) {
+  Widget initBookButton(
+      BuildContext context, BlocMovie blocMovie, Movie movie) {
     return Button('Book',
         alignment: Alignment.center,
         height: 30,
@@ -393,7 +395,7 @@ class MovieScreen extends BaseScreen {
         disableStyle: TextStyle(
             color: Colors.black38, fontWeight: FontWeight.bold, fontSize: 16),
         enable: true,
-        onPress: () {});
+        onPress: () => pushScreen(context, BookingScreen(movie)));
   }
 
   @override

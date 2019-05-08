@@ -18,7 +18,7 @@ class PromotionScreen extends BaseScreen {
         'Weekly for women. Buy 1 get 1 free popcorn.',
         '10/02-04/06/2019'));
     items.add(PromotionItem(
-        'https://images.foody.vn/images/Culture-350-x-495.jpg',
+        'https://khuyenmaiviet.vn/wp-content/uploads/2019/02/350x495.jpg',
         '50.000 for 2 tickets. Last monday each month.',
         '30/03-04/07/2019'));
     items.add(PromotionItem(

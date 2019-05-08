@@ -10,7 +10,9 @@ import 'package:movie/screens/promotion/PromotionScreen.dart';
 import 'package:movie/screens/signin/SignInScreen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:movie/screens/splash/SplashScr.dart';
+import 'package:movie/screens/theater/TheaterScreen.dart';
 import 'package:movie/utils/LocalizationsDelegateUtil.dart';
+import 'package:movie/base/style/BaseStyle.dart';
 
 void main() async {
   /// Method channel to call method from native
@@ -49,7 +51,7 @@ class MainScreen extends StatelessWidget {
       ],
       theme: ThemeData(
         brightness: Brightness.light,
-//          primaryColor: primaryColor,
+//          primaryColor: ye,
       ),
       debugShowCheckedModeBanner: false,
 //        home: BlocProvider<BlocSignIn>(child: SignInScreen(size), bloc: BlocSignIn())

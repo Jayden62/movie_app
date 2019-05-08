@@ -11,7 +11,6 @@ import 'package:movie/screens/movie/MovieScreen.dart';
 import 'package:movie/screens/promotion/PromotionScreen.dart';
 import 'package:movie/screens/signin/SignInScreen.dart';
 import 'package:movie/custom/button/Button.dart' as Button;
-import 'package:movie/custom/iconbutton/IconButton.dart' as IconButton;
 import 'package:movie/middle/model/ScreenSize.dart';
 import 'package:movie/screens/theater/TheaterScreen.dart';
 
@@ -36,9 +35,10 @@ class HomeScreen extends BaseScreen {
     return Container(
         color: Color.fromARGB(255, 30, 42, 58),
         child: StreamBuilder(
+            initialData: currentIndex,
             stream: blocHome.homeStream,
             builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
-              if (snapshot.hasData && snapshot.data != 0) {
+              if (snapshot.hasData && snapshot.data != null) {
                 print('value is $snapshot');
                 index = snapshot.data;
               }
@@ -49,40 +49,52 @@ class HomeScreen extends BaseScreen {
   /// Init bottom
   @override
   Widget onInitBottomNavigationBar(BuildContext context) {
+    List<Color> colors = [yellowColor, Colors.grey];
     final BlocHome blocHome = BlocProvider.of<BlocHome>(context);
 
     return BottomNavigationBar(
-      onTap: (value) {
-        blocHome.homeSink.add(value);
-      },
-      // new
-      currentIndex: currentIndex,
-      backgroundColor: Color.fromARGB(255, 30, 42, 58),
-      unselectedItemColor: Colors.grey,
-      fixedColor: yellowColor,
-      type: BottomNavigationBarType.fixed,
-      items: [
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.movie_creation,
-          ),
-          title: Text(
-            'Movie',
-          ),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.theaters,
-          ),
-          title: Text('Theater'),
-        ),
-        BottomNavigationBarItem(
+        onTap: (value) {
+          blocHome.bottomSink.add(colors);
+          blocHome.homeSink.add(value);
+        },
+        currentIndex: currentIndex,
+        backgroundColor: Color.fromARGB(255, 30, 42, 58),
+        unselectedItemColor: Colors.grey,
+        fixedColor: yellowColor,
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
             icon: Icon(
-              Icons.card_giftcard,
+              Icons.movie_creation,
+              color: colors[currentIndex],
             ),
-            title: Text('Promotion'))
-      ],
-    );
+            title: Text(
+              'Movie',
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.theaters,
+//              color: colors[currentIndex],
+            ),
+            title: Text('Theater'),
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.card_giftcard,
+//                color: colors[currentIndex],
+              ),
+              title: Text('Promotion'))
+        ]);
+  }
+
+  Widget initBottomNavigationBarItem(BuildContext context) {
+    final BlocHome blocHome = BlocProvider.of<BlocHome>(context);
+
+    return StreamBuilder(
+        stream: blocHome.bottomStream,
+        builder:
+            (BuildContext context, AsyncSnapshot<List<Color>> snapshot) {});
   }
 
   @override
@@ -239,7 +251,7 @@ class HomeScreen extends BaseScreen {
     return PreferredSize(
         preferredSize: Size.fromHeight(appBarHeight),
         child: HomeHeader(
-          'MOVIES',
+          'SWEET MOVIE',
           onLeftPress: () {
             print('open drawer.');
             scaffoldKey.currentState.openDrawer();

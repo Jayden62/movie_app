@@ -12,6 +12,7 @@ class MovieHeader extends BaseHeader {
       elevation: 0,
       bottom: TabBar(
         indicatorColor: Colors.white,
+        indicatorSize: TabBarIndicatorSize.label,
         tabs: <Widget>[
           initTitle('Now Showing'),
           initTitle('Special'),
