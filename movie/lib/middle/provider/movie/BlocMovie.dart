@@ -7,10 +7,11 @@ import 'package:movie/middle/model/Movie.dart';
 import 'package:movie/middle/provider/base/BlocProvider.dart';
 
 class BlocMovie extends BlocBase {
-  StreamController<bool> loadDataController = StreamController();
+  StreamController<bool> loadDataController;
 
-  StreamController<Movie> infoController = StreamController();
-  StreamController<List<Movie>> photoController = StreamController();
+  StreamController<Movie> infoController;
+
+  StreamController<List<Movie>> photoController;
 
   ValueChanged<Movie> movieCallback;
 
@@ -26,10 +27,11 @@ class BlocMovie extends BlocBase {
 
   @override
   void init() {
-    print('OnInit------');
+    print('-----Init Stream-----');
     loadDataController = StreamController();
 
     infoController = StreamController();
+
     photoController = StreamController();
 
     loadDataController.stream.listen((data) async {

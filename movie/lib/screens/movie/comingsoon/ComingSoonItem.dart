@@ -11,6 +11,7 @@ class ComingSoonItem extends BaseItem {
   @override
   Widget onInitBody(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: normalMargin),
       height: 280,
       width: 200,
       constraints: BoxConstraints.expand(

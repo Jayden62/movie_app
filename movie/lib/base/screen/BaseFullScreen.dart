@@ -4,7 +4,17 @@ import 'package:movie/base/dialog/message/BaseMessageDialog.dart';
 import 'package:movie/base/style/BaseStyle.dart';
 import 'package:movie/utils/SlideRoute.dart';
 
-abstract class BaseScreen extends StatelessWidget{
+class BaseFull<T extends BaseFullScreen> extends StatefulWidget{
+  final T view;
+  BaseFull(this.view);
+
+  @override
+  State<StatefulWidget> createState() {
+    return view;
+  }
+
+}
+ class BaseFullScreen extends State<BaseFull> {
   final BaseLoadingDialog loadingDialog = BaseLoadingDialog();
   final BaseMessageDialog messageDialog = BaseMessageDialog();
 
@@ -28,11 +38,11 @@ abstract class BaseScreen extends StatelessWidget{
               bottomSheet: onInitBottomSheet(context),
               backgroundColor: Colors.transparent,
               resizeToAvoidBottomPadding:
-                  onInitResizeToAvoidBottomPadding(context),
+              onInitResizeToAvoidBottomPadding(context),
               primary: onInitPrimary(context),
             )));
     Widget widget;
-    if (initTabBarView(context)) {
+    if (initTabBar(context)) {
       widget = DefaultTabController(
           key: onInitScaffoldState(context),
           length: 3,
@@ -71,11 +81,13 @@ abstract class BaseScreen extends StatelessWidget{
     return null;
   }
 
-  bool initTabBarView(BuildContext context) {
+  bool initTabBar(BuildContext context) {
     return false;
   }
 
-  Widget onInitBody(BuildContext context);
+  Widget onInitBody(BuildContext context){
+    return null;
+  }
 
   Widget onInitDrawer(BuildContext context) {
     return null;
@@ -122,10 +134,10 @@ abstract class BaseScreen extends StatelessWidget{
   /// Param (context, message, {title, okLabel, cancelLabel, okTap, cancelTap})
   void showMessageDialog(BuildContext context, String message,
       {String title,
-      String okLabel,
-      String cancelLabel,
-      Function tapOk,
-      Function tapCancel}) {
+        String okLabel,
+        String cancelLabel,
+        Function tapOk,
+        Function tapCancel}) {
     messageDialog.showMessageDialog(context, message,
         title: title, okLabel: okLabel, okTap: tapOk);
   }
@@ -149,3 +161,4 @@ abstract class BaseScreen extends StatelessWidget{
     }
   }
 }
+

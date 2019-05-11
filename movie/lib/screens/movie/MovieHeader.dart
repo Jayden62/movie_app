@@ -3,6 +3,8 @@ import 'package:movie/base/header/BaseHeader.dart';
 import 'package:movie/base/style/BaseStyle.dart';
 
 class MovieHeader extends BaseHeader {
+  final ValueChanged<int> onTap;
+  MovieHeader(this.onTap);
   @override
   Widget onInitHeader(BuildContext context) {
     return Container(
@@ -13,8 +15,9 @@ class MovieHeader extends BaseHeader {
       bottom: TabBar(
         indicatorColor: Colors.white,
         indicatorSize: TabBarIndicatorSize.label,
+        onTap: onTap,
         tabs: <Widget>[
-          initTitle('Now Showing'),
+          initTitle('Showing'),
           initTitle('Special'),
           initTitle('Coming soon'),
         ],

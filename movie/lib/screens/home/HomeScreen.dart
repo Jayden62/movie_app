@@ -28,7 +28,8 @@ class HomeScreen extends BaseScreen {
     final BlocHome blocHome = BlocProvider.of<BlocHome>(context);
     int index = 0;
     List<Widget> widgets = [
-      BlocProvider<BlocMovie>(child: MovieScreen(size, scaffoldKey), bloc: BlocMovie()),
+      BlocProvider<BlocMovie>(
+          child: MovieScreen(size, scaffoldKey), bloc: BlocMovie()),
       TheaterScreen(),
       PromotionScreen()
     ];
