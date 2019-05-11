@@ -21,4 +21,9 @@ class BlocHome extends BlocBase {
     homeController.close();
     bottomController.close();
   }
+
+  @override
+  void init() {
+
+  }
 }

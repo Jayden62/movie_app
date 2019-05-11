@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 abstract class BlocBase {
 
   void dispose();
+  void init();
 
 }
 
@@ -37,6 +38,11 @@ class BlocProviderState<T> extends State<BlocProvider<BlocBase>>{
   void dispose(){
     widget.bloc.dispose();
     super.dispose();
+  }
+  @override
+  void initState() {
+    widget.bloc.init();
+    super.initState();
   }
 
   @override

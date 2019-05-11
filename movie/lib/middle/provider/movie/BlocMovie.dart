@@ -14,19 +14,29 @@ class BlocMovie extends BlocBase {
 
   ValueChanged<Movie> movieCallback;
 
-  BlocMovie() {
+  @override
+  void dispose() {
+    loadDataController.close();
+    photoController.close();
+    infoController.close();
+    loadDataController = null;
+    infoController = null;
+    photoController = null;
+  }
+
+  @override
+  void init() {
+    print('OnInit------');
+    loadDataController = StreamController();
+
+    infoController = StreamController();
+    photoController = StreamController();
+
     loadDataController.stream.listen((data) async {
       if (data) {
         final result = await API.instance.getMovies();
         photoController.sink.add(result);
       }
     });
-  }
-
-  @override
-  void dispose() {
-    loadDataController.close();
-    photoController.close();
-    infoController.close();
   }
 }

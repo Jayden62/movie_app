@@ -28,7 +28,7 @@ class HomeScreen extends BaseScreen {
     final BlocHome blocHome = BlocProvider.of<BlocHome>(context);
     int index = 0;
     List<Widget> widgets = [
-      BlocProvider<BlocMovie>(child: MovieScreen(size), bloc: BlocMovie()),
+      BlocProvider<BlocMovie>(child: MovieScreen(size, scaffoldKey), bloc: BlocMovie()),
       TheaterScreen(),
       PromotionScreen()
     ];
@@ -53,7 +53,7 @@ class HomeScreen extends BaseScreen {
     final BlocHome blocHome = BlocProvider.of<BlocHome>(context);
 
     return BottomNavigationBar(
-        onTap: (value) {
+        onTap: (value) async {
           blocHome.bottomSink.add(colors);
           blocHome.homeSink.add(value);
         },

@@ -10,33 +10,38 @@ abstract class BaseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DefaultTabController(
+    Widget gestureDetector = GestureDetector(
+        onTap: () {
+          /// Call this method here to hide soft keyboard when touching outside keyboard.
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: Container(
+            decoration: onInitBackground(context),
+            child: Scaffold(
+              key: onInitKey(context),
+              appBar: onInitAppBar(context),
+              body: onInitBody(context),
+              bottomNavigationBar: onInitBottomNavigationBar(context),
+              floatingActionButton: onInitFloatingActionButton(context),
+              drawer: onInitDrawer(context),
+              endDrawer: onInitEndDrawer(context),
+              bottomSheet: onInitBottomSheet(context),
+              backgroundColor: Colors.transparent,
+              resizeToAvoidBottomPadding:
+                  onInitResizeToAvoidBottomPadding(context),
+              primary: onInitPrimary(context),
+            )));
+    Widget widget;
+    if (initTabBar(context)) {
+      widget = DefaultTabController(
           key: onInitScaffoldState(context),
           length: 3,
           initialIndex: 0,
-          child: GestureDetector(
-              onTap: () {
-                /// Call this method here to hide soft keyboard when touching outside keyboard.
-                FocusScope.of(context).requestFocus(FocusNode());
-              },
-              child: Container(
-                  decoration: onInitBackground(context),
-                  child: Scaffold(
-                    key: onInitKey(context),
-                    appBar: onInitAppBar(context),
-                    body: onInitBody(context),
-                    bottomNavigationBar: onInitBottomNavigationBar(context),
-                    floatingActionButton: onInitFloatingActionButton(context),
-                    drawer: onInitDrawer(context),
-                    endDrawer: onInitEndDrawer(context),
-                    bottomSheet: onInitBottomSheet(context),
-                    backgroundColor: Colors.transparent,
-                    resizeToAvoidBottomPadding:
-                        onInitResizeToAvoidBottomPadding(context),
-                    primary: onInitPrimary(context),
-                  )))),
-    );
+          child: gestureDetector);
+    } else {
+      widget = gestureDetector;
+    }
+    return MaterialApp(home: widget);
   }
 
   /// Default background is white
@@ -64,6 +69,10 @@ abstract class BaseScreen extends StatelessWidget {
 
   Widget onInitFloatingActionButton(BuildContext context) {
     return null;
+  }
+
+  bool initTabBar(BuildContext context) {
+    return false;
   }
 
   Widget onInitBody(BuildContext context);

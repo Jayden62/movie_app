@@ -31,4 +31,9 @@ class BlocSignIn extends BlocBase {
     signInEnabledController.close();
     inputSignInController.close();
   }
+
+  @override
+  void init() {
+
+  }
 }
