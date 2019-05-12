@@ -164,6 +164,7 @@ class ShowingScreen extends State<ShowingStatefulWidget>
                             items[index] = MovieItem(
                               snapshot.data[index].url,
 
+
                               /// call back onTapItem
                               onTapItem: () {
                                 print('call back onTapItem');
