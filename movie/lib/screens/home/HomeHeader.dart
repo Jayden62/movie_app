@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie/base/header/BaseHeader.dart';
 import 'package:movie/base/style/BaseStyle.dart';
-import 'package:movie/screens/home/HomeStyle.dart';
 
 class HomeHeader extends BaseHeader {
   final String title;

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:movie/middle/api/API.dart';
-import 'package:movie/middle/model/Data.dart';
 import 'package:movie/middle/model/Movie.dart';
 import 'package:movie/middle/provider/base/BlocProvider.dart';
 

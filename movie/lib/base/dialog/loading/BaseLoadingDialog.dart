@@ -1,6 +1,5 @@
 import 'package:movie/base/dialog/loading/BaseLoadingStyle.dart';
 import 'package:movie/base/style/BaseStyle.dart';
-import 'package:movie/utils/LocalizationsUtil.dart';
 import 'package:flutter/material.dart';
 
 class BaseLoadingDialog {

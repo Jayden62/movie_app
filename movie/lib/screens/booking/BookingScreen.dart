@@ -4,7 +4,6 @@ import 'package:movie/base/style/BaseStyle.dart';
 import 'package:movie/middle/model/Movie.dart';
 import 'package:movie/screens/booking/BookingHeader.dart';
 import 'package:movie/screens/booking/DateItem.dart';
-import 'package:movie/screens/booking/ScheduleItem.dart';
 import 'package:movie/screens/booking/BookingItem.dart';
 import 'package:movie/utils/DateUtil.dart';
 

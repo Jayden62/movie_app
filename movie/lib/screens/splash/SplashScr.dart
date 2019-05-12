@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movie/base/screen/BaseScreen.dart';
-import 'package:movie/base/style/BaseStyle.dart';
 import 'package:movie/middle/model/ScreenSize.dart';
 import 'package:movie/middle/provider/base/BlocProvider.dart';
 import 'package:movie/middle/provider/signin/BlocSignIn.dart';

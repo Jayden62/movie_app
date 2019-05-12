@@ -1,18 +1,10 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:movie/middle/model/ScreenSize.dart';
-import 'package:movie/middle/provider/base/BlocProvider.dart';
-import 'package:movie/middle/provider/signin/BlocSignIn.dart';
-import 'package:movie/screens/booking/BookingScreen.dart';
-import 'package:movie/screens/promotion/PromotionScreen.dart';
-import 'package:movie/screens/signin/SignInScreen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:movie/screens/splash/SplashScr.dart';
-import 'package:movie/screens/theater/TheaterScreen.dart';
 import 'package:movie/utils/LocalizationsDelegateUtil.dart';
-import 'package:movie/base/style/BaseStyle.dart';
 
 void main() async {
   /// Method channel to call method from native

@@ -1,4 +1,3 @@
-import 'package:movie/base/screen/BaseFullScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/base/screen/BaseScreen.dart';
 import 'package:movie/base/style/BaseStyle.dart';

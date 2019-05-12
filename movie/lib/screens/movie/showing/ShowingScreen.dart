@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:movie/base/style/BaseStyle.dart';
 import 'package:movie/custom/button/Button.dart';
 import 'package:movie/middle/model/Movie.dart';
-import 'package:movie/middle/model/ScreenSize.dart';
-import 'package:movie/middle/provider/base/BlocProvider.dart';
 import 'package:movie/middle/provider/movie/BlocMovie.dart';
 import 'package:movie/screens/booking/BookingScreen.dart';
 import 'package:movie/screens/movie/MovieItem.dart';

@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:movie/middle/model/Movie.dart';
-import 'package:movie/middle/model/Result.dart';
 
 class API {
   /// Create single ton

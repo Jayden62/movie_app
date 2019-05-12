@@ -3,7 +3,6 @@ import 'package:movie/base/screen/BaseScreen.dart';
 import 'package:movie/base/style/BaseStyle.dart';
 import 'package:movie/custom/switch/SwitchButton.dart';
 import 'package:movie/screens/theater/TheaterItem.dart';
-import 'package:movie/widgets/MyDivider.dart';
 
 class TheaterScreen extends BaseScreen {
   final TextEditingController searchController = TextEditingController();

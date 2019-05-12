@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie/base/item/BaseItem.dart';
 import 'package:movie/base/style/BaseStyle.dart';
-import 'package:movie/custom/button/Button.dart';
 
 class PromotionItem extends BaseItem {
   final String image;

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie/base/screen/BaseScreen.dart';
-import 'package:movie/base/style/BaseStyle.dart';
-import 'package:movie/custom/button/Button.dart';
+
 import 'package:movie/screens/promotion/PromotionItem.dart';
 
 class PromotionScreen extends BaseScreen {
