@@ -55,7 +55,6 @@ class HomeScreen extends BaseScreen {
 
     return BottomNavigationBar(
         onTap: (value) async {
-          blocHome.bottomSink.add(colors);
           blocHome.homeSink.add(value);
         },
         currentIndex: currentIndex,
@@ -88,16 +87,6 @@ class HomeScreen extends BaseScreen {
               title: Text('Promotion'))
         ]);
   }
-
-  Widget initBottomNavigationBarItem(BuildContext context) {
-    final BlocHome blocHome = BlocProvider.of<BlocHome>(context);
-
-    return StreamBuilder(
-        stream: blocHome.bottomStream,
-        builder:
-            (BuildContext context, AsyncSnapshot<List<Color>> snapshot) {});
-  }
-
   @override
   Widget onInitDrawer(BuildContext context) {
     List<Widget> items = [];

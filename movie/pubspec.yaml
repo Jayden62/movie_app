@@ -27,6 +27,8 @@ dependencies:
   splashscreen: ^1.2.0
   carousel_slider: ^1.3.0
 
+  video_player:
+
 
   flutter_localizations:
     sdk: flutter

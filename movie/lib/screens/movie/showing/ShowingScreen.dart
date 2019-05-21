@@ -7,7 +7,9 @@ import 'package:movie/middle/provider/movie/BlocMovie.dart';
 import 'package:movie/screens/booking/BookingScreen.dart';
 import 'package:movie/screens/movie/MovieItem.dart';
 import 'package:movie/screens/movie/MovieStyle.dart';
+import 'package:movie/screens/trailer/TrailerScreen.dart';
 import 'package:movie/utils/SlideRoute.dart';
+import 'package:movie/base/dialog/loading/BaseLoadingDialog.dart';
 
 class ShowingStatefulWidget extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
@@ -81,6 +83,8 @@ class ShowingScreen extends State<ShowingStatefulWidget>
               children: <Widget>[
                 initPhoto(data.url),
                 initName(data.name, data),
+                initTrailerLabel(),
+                initTrailer(context, data.trailer),
               ],
             ),
           )),
@@ -110,6 +114,33 @@ class ShowingScreen extends State<ShowingStatefulWidget>
           ),
           initBookButtonDetail(context, movie),
         ],
+      ),
+    );
+  }
+
+  Widget initTrailerLabel() {
+    return Container(
+      margin: EdgeInsets.only(top: smallerMargin),
+      child: Text(
+        'Trailer',
+        style: TextStyle(color: Colors.white),
+      ),
+    );
+  }
+
+  Widget initTrailer(BuildContext context, String trailer) {
+    return GestureDetector(
+      onTap: () =>
+          Navigator.push(context, SlideRoute(widget: TrailerScreen(trailer))),
+      child: Container(
+        margin: EdgeInsets.only(top: smallerMargin),
+        child: Text(
+          trailer,
+          style: TextStyle(
+            color: Colors.white,
+            decoration: TextDecoration.underline,
+          ),
+        ),
       ),
     );
   }
@@ -164,7 +195,6 @@ class ShowingScreen extends State<ShowingStatefulWidget>
                             items[index] = MovieItem(
                               snapshot.data[index].url,
 
-
                               /// call back onTapItem
                               onTapItem: () {
                                 print('call back onTapItem');
@@ -217,8 +247,10 @@ class ShowingScreen extends State<ShowingStatefulWidget>
           String name = "";
           String time = "";
           String alpha = "";
-
+          BaseLoadingDialog().showLoading(context);
           if (snapshot.hasData && snapshot != null) {
+            BaseLoadingDialog().hideLoading(context);
+
             movie = snapshot.data;
             name = movie.name;
             alpha = movie.alpha;
