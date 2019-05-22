@@ -26,7 +26,7 @@ class MovieScreen extends BaseScreen {
             controller: tabController,
             children: [
               ShowingStatefulWidget(scaffoldKey, blocMovie),
-              SpecialStatefulWidget(scaffoldKey, blocMovie),
+//              SpecialStatefulWidget(scaffoldKey, blocMovie),
               ComingSoonScreen(),
 //              BaseFull(ComingSoonScreen(scaffoldKey, blocMovie)),
             ]));

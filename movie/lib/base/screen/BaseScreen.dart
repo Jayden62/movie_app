@@ -35,7 +35,7 @@ abstract class BaseScreen extends StatelessWidget{
     if (initTabBarView(context)) {
       widget = DefaultTabController(
           key: onInitScaffoldState(context),
-          length: 3,
+          length: 2,
           initialIndex: 0,
           child: gestureDetector);
     } else {

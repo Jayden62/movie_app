@@ -18,7 +18,7 @@ class MovieHeader extends BaseHeader {
         onTap: onTap,
         tabs: <Widget>[
           initTitle('Showing'),
-          initTitle('Special'),
+//          initTitle('Special'),
           initTitle('Coming soon'),
         ],
       ),

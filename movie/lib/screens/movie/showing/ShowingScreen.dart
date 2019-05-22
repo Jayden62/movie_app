@@ -95,7 +95,8 @@ class ShowingScreen extends State<ShowingStatefulWidget>
     return Hero(
       tag: 'movie-detail',
       child: Container(
-        height: 250,
+        alignment: Alignment.topLeft,
+        height: 100,
         child: Image.network(url),
       ),
     );
@@ -201,8 +202,10 @@ class ShowingScreen extends State<ShowingStatefulWidget>
 
                                 /// movie detail, get scaffold key from HomeScreen(). it means that MovieScreen() is contained by HomeScreen().
                                 /// when i want to navigate new screen i have to use scaffold key from HomeScreen().
-                                gotoDetails(scaffoldKey.currentContext,
-                                    snapshot.data[index]);
+//                                gotoDetails(scaffoldKey.currentContext,
+//                                    snapshot.data[index]);
+
+                                showDetail(context, snapshot.data[index]);
                               },
                             );
                           }
@@ -236,6 +239,25 @@ class ShowingScreen extends State<ShowingStatefulWidget>
         ],
       ),
     ));
+  }
+
+  void showDetail(BuildContext context, Movie data) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            padding: EdgeInsets.all(normalPadding),
+            color: Color.fromARGB(255, 30, 42, 58),
+            child: ListView(
+              children: <Widget>[
+                initPhoto(data.url),
+                initName(data.name, data),
+                initTrailerLabel(),
+                initTrailer(context, data.trailer),
+              ],
+            ),
+          );
+        });
   }
 
   Widget initShowingInfo() {
