@@ -46,7 +46,7 @@ abstract class BaseScreen extends StatelessWidget{
 
   /// Default background is white
   BoxDecoration onInitBackground(BuildContext context) {
-    return BoxDecoration(color: Colors.white);
+    return BoxDecoration(color: Color.fromARGB(255, 30, 42, 58));
   }
 
   Key onInitKey(BuildContext context) {
