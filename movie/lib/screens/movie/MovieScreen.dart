@@ -9,10 +9,9 @@ import 'package:movie/screens/movie/showing/ShowingScreen.dart';
 import 'package:movie/screens/movie/special/SpecialScreen.dart';
 
 class MovieScreen extends BaseScreen {
-  final ScreenSize size;
   final GlobalKey<ScaffoldState> scaffoldKey;
 
-  MovieScreen(this.size, this.scaffoldKey);
+  MovieScreen(this.scaffoldKey);
 
   @override
   Widget onInitBody(BuildContext context) {

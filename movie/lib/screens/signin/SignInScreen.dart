@@ -13,10 +13,6 @@ class SignInScreen extends BaseScreen {
   final userNameController = TextEditingController();
   final passwordNameController = TextEditingController();
 
-  final ScreenSize size;
-
-  SignInScreen(this.size);
-
   @override
   Widget onInitBody(BuildContext context) {
     final BlocSignIn blocSignIn = BlocProvider.of<BlocSignIn>(context);
@@ -43,8 +39,7 @@ class SignInScreen extends BaseScreen {
         pushScreen(
             context,
             BlocProvider<BlocHome>(
-                child: HomeScreen(size, userNameController.text),
-                bloc: BlocHome()));
+                child: HomeScreen(userNameController.text), bloc: BlocHome()));
 //        hideLoadingDialog(context);
       } else {
         showMessageDialog(context, 'Can not login with this account.');
@@ -218,5 +213,10 @@ class SignInScreen extends BaseScreen {
         );
       },
     );
+  }
+
+  @override
+  PreferredSize onInitAppBar(BuildContext context) {
+    return null;
   }
 }

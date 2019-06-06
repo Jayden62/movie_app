@@ -15,13 +15,12 @@ import 'package:movie/middle/model/ScreenSize.dart';
 import 'package:movie/screens/theater/TheaterScreen.dart';
 
 class HomeScreen extends BaseScreen {
-  final ScreenSize size;
   final String userName;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   final int currentIndex = 0;
 
   /// Constructor
-  HomeScreen(this.size, this.userName);
+  HomeScreen(this.userName);
 
   @override
   Widget onInitBody(BuildContext context) {
@@ -29,7 +28,7 @@ class HomeScreen extends BaseScreen {
     int index = 0;
     List<Widget> widgets = [
       BlocProvider<BlocMovie>(
-          child: MovieScreen(size, scaffoldKey), bloc: BlocMovie()),
+          child: MovieScreen(scaffoldKey), bloc: BlocMovie()),
       TheaterScreen(),
       PromotionScreen()
     ];
@@ -221,7 +220,7 @@ class HomeScreen extends BaseScreen {
                     pushScreen(
                         context,
                         BlocProvider<BlocSignIn>(
-                            child: SignInScreen(size), bloc: BlocSignIn()));
+                            child: SignInScreen(), bloc: BlocSignIn()));
                   },
 //                iconButton: Button.IconButton(
 //                    'assets/photo/ic_event_highlight.png',

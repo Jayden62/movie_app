@@ -7,20 +7,21 @@ import 'package:movie/screens/signin/SignInScreen.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 class SplashSrc extends BaseScreen {
-  final ScreenSize size;
-
-  SplashSrc(this.size);
-
   @override
   Widget onInitBody(BuildContext context) {
     return SplashScreen(
       seconds: 3,
-      navigateAfterSeconds: BlocProvider<BlocSignIn>(
-          child: SignInScreen(size), bloc: BlocSignIn()),
+      navigateAfterSeconds:
+          BlocProvider<BlocSignIn>(child: SignInScreen(), bloc: BlocSignIn()),
       image: Image.asset('assets/photos/photo_splash.png'),
       backgroundColor: Color.fromARGB(255, 30, 42, 58),
       styleTextUnderTheLoader: TextStyle(),
       loaderColor: Color.fromARGB(255, 93, 104, 120),
     );
+  }
+
+  @override
+  PreferredSize onInitAppBar(BuildContext context) {
+    return null;
   }
 }
