@@ -24,7 +24,7 @@ class MovieScreen extends BaseScreen {
             physics: NeverScrollableScrollPhysics(),
             controller: tabController,
             children: [
-              ShowingStatefulWidget(scaffoldKey, blocMovie),
+              ShowingStateful(scaffoldKey, blocMovie),
 //              SpecialStatefulWidget(scaffoldKey, blocMovie),
               ComingSoonScreen(),
 //              BaseFull(ComingSoonScreen(scaffoldKey, blocMovie)),

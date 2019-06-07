@@ -11,11 +11,11 @@ import 'package:movie/screens/trailer/TrailerScreen.dart';
 import 'package:movie/utils/SlideRoute.dart';
 import 'package:movie/base/dialog/loading/BaseLoadingDialog.dart';
 
-class ShowingStatefulWidget extends StatefulWidget {
+class ShowingStateful extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
   final BlocMovie blocMovie;
 
-  ShowingStatefulWidget(this.scaffoldKey, this.blocMovie);
+  ShowingStateful(this.scaffoldKey, this.blocMovie);
 
   @override
   State<StatefulWidget> createState() {
@@ -23,7 +23,7 @@ class ShowingStatefulWidget extends StatefulWidget {
   }
 }
 
-class ShowingScreen extends State<ShowingStatefulWidget>
+class ShowingScreen extends State<ShowingStateful>
     with AutomaticKeepAliveClientMixin {
   final GlobalKey<ScaffoldState> scaffoldKey;
   final BlocMovie blocMovie;

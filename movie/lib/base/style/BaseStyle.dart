@@ -19,6 +19,7 @@ double normalPadding = 20.0;
 double largePadding = 25.0;
 double largerPadding = 30.0;
 double largestPadding = 35.0;
+double superLargestPadding = 40.0;
 
 double smallestRadius = 5.0;
 double smallerRadius = 10.0;

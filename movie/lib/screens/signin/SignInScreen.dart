@@ -195,6 +195,10 @@ class SignInScreen extends BaseScreen {
                         userNameController.text,
                         passwordNameController.text
                       ]));
+//                      blocSignIn.inputSignInSink.add(Data(context, [
+//                       'admin',
+//                        '123456'
+//                      ]));
 //                      showLoadingDialog(context);
                     }
                   })
