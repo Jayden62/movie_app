@@ -110,6 +110,7 @@ class BookingScreen extends BaseScreen {
       child: ListView(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
+        physics: NeverScrollableScrollPhysics(),
         children: items,
       ),
     );
@@ -118,24 +119,20 @@ class BookingScreen extends BaseScreen {
   Widget initCurrentDate() {
     return Container(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Text(
-              DateUtil().getCurrentDate(),
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16),
-            ),
-            Text(
-              DateUtil().getCurrentDay(),
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16),
-            ),
-          ],
-        ));
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Text(
+          DateUtil().getCurrentDate(),
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+        Text(
+          DateUtil().getCurrentDay(),
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+      ],
+    ));
   }
 
   Widget initDivider() {
@@ -164,7 +161,7 @@ class BookingScreen extends BaseScreen {
 
   Widget initDayItem(String day) {
     return Container(
-      padding: EdgeInsets.only(right: superLargestPadding),
+      padding: EdgeInsets.only(right: largerPadding),
       child: Text(
         day,
         style: TextStyle(color: Color.fromARGB(255, 145, 140, 136)),

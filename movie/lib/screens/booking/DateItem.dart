@@ -11,7 +11,7 @@ class DateItem extends BaseItem {
   Widget onInitBody(BuildContext context) {
     return InkWell(
         child: Container(
-      padding: EdgeInsets.only(right: superLargestPadding),
+      padding: EdgeInsets.only(right: largestPadding),
       child: Text(currentDate,
           style: TextStyle(
               color: Color.fromARGB(255, 145, 140, 136),

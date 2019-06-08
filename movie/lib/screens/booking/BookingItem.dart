@@ -14,7 +14,6 @@ class BookingItem extends BaseItem {
   Widget onInitBody(BuildContext context) {
     List<Widget> items = [];
     items.add(ScheduleItem(time));
-    items.add(ScheduleItem(time));
     return Container(
       margin: EdgeInsets.only(top: normalMargin),
       child: Column(

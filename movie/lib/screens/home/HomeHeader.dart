@@ -25,7 +25,7 @@ class HomeHeader extends BaseHeader {
           child: Text(
             title,
             style: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 22, color: yellowColor),
+                fontWeight: FontWeight.bold, fontSize: 18, color: yellowColor),
             textAlign: TextAlign.center,
           ),
         )),
