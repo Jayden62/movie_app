@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:movie/middle/model/ScreenSize.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:movie/screens/booking/BookingScreen.dart';
+import 'package:movie/screens/seat/SeatScreen.dart';
 import 'package:movie/screens/splash/SplashScr.dart';
 import 'package:movie/screens/trailer/TrailerScreen.dart';
 import 'package:movie/utils/LocalizationsDelegateUtil.dart';
@@ -36,8 +37,8 @@ class MainScreen extends StatelessWidget {
 //          primaryColor: ye,
       ),
       debugShowCheckedModeBanner: false,
-      home: SplashSrc(),
-//        home: BookingScreen(),
+//      home: SplashSrc(),
+        home: SeatScreen("12:30"),
     );
   }
 }

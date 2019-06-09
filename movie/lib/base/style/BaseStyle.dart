@@ -82,7 +82,7 @@ double iconSize = 20.0;
 
 Color primaryColor = Color.fromARGB(255, 14, 194, 178);
 
-var seatColor = Color.fromARGB(255, 163, 62, 62);
+var seatColor = Color.fromARGB(255, 91, 24, 22);
 
 /// Color button
 

@@ -34,20 +34,20 @@ class SeatHeader extends BaseHeader {
               onLeftPress();
             },
             child: Container(
-              child: Icon(Icons.arrow_back, color: Colors.white),
+              child: Icon(Icons.arrow_back, color: yellowColor),
               width: appBarHeight,
               height: appBarHeight,
             )),
-//        actions: <Widget>[
-//          GestureDetector(
-//            onTap: () => onRightPress,
-//            child: Container(
-//              child: Icon(Icons.person, color: yellowColor),
-//              width: appBarHeight,
-//              height: appBarHeight,
-//            ),
-//          ),
-//        ],
+        actions: <Widget>[
+          GestureDetector(
+            onTap: () => onRightPress,
+            child: Container(
+              child: Icon(Icons.fastfood, color: yellowColor),
+              width: appBarHeight,
+              height: appBarHeight,
+            ),
+          ),
+        ],
       )),
     );
   }
