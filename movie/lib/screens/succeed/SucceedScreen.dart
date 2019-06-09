@@ -3,6 +3,8 @@ import 'package:movie/base/screen/BaseScreen.dart';
 import 'package:movie/base/style/BaseStyle.dart';
 import 'package:uuid/uuid.dart';
 
+import 'SucceedHeader.dart';
+
 class SucceedScreen extends BaseScreen {
   @override
   Widget onInitBody(BuildContext context) {
@@ -66,9 +68,22 @@ class SucceedScreen extends BaseScreen {
       child: Center(
         child: Image.asset(
           'assets/photos/barcode.png',
+          height: 150,
           color: Colors.white,
         ),
       ),
     );
+  }
+
+  @override
+  PreferredSize onInitAppBar(BuildContext context) {
+    return PreferredSize(
+        preferredSize: Size.fromHeight(appBarHeight),
+        child: SucceedHeader(
+          'SWEET MOVIES',
+          onLeftPress: () {
+            popScreen(context);
+          },
+        ));
   }
 }

@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:movie/base/header/BaseHeader.dart';
 import 'package:movie/base/style/BaseStyle.dart';
 
-class SeatHeader extends BaseHeader {
+class SucceedHeader extends BaseHeader {
   final String title;
   final Function() onLeftPress;
-  final Function() onRightPress;
 
-  SeatHeader(this.title, {this.onLeftPress, this.onRightPress});
+  SucceedHeader(this.title, {this.onLeftPress});
 
   @override
   Widget onInitHeader(BuildContext context) {
@@ -38,18 +37,6 @@ class SeatHeader extends BaseHeader {
               width: appBarHeight,
               height: appBarHeight,
             )),
-        actions: <Widget>[
-          GestureDetector(
-            onTap: () {
-              onRightPress();
-            },
-            child: Container(
-              child: Icon(Icons.fastfood, color: yellowColor),
-              width: appBarHeight,
-              height: appBarHeight,
-            ),
-          ),
-        ],
       )),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie/base/screen/BaseScreen.dart';
 import 'package:movie/base/style/BaseStyle.dart';
+import 'package:movie/screens/fail/FailHeader.dart';
 
 class FailScreen extends BaseScreen {
   @override
@@ -40,5 +41,17 @@ class FailScreen extends BaseScreen {
             color: Colors.white, fontSize: 16, fontStyle: FontStyle.italic),
       ),
     );
+  }
+
+  @override
+  PreferredSize onInitAppBar(BuildContext context) {
+    return PreferredSize(
+        preferredSize: Size.fromHeight(appBarHeight),
+        child: FailHeader(
+          'SWEET MOVIES',
+          onLeftPress: () {
+            popScreen(context);
+          },
+        ));
   }
 }
