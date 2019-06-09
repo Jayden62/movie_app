@@ -11,6 +11,7 @@ double normalMargin = 20.0;
 double largeMargin = 25.0;
 double largerMargin = 30.0;
 double largestMargin = 35.0;
+double superLargestMargin = 40.0;
 
 double smallestPadding = 5.0;
 double smallerPadding = 10.0;

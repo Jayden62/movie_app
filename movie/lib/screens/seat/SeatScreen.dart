@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:movie/base/screen/BaseScreen.dart';
 import 'package:movie/base/style/BaseStyle.dart';
 import 'package:movie/custom/button/Button.dart' as mButton;
+import 'package:movie/screens/fail/FailScreen.dart';
 import 'package:movie/screens/seat/SeatHeader.dart';
+import 'package:movie/screens/succeed/SucceedScreen.dart';
 
 class SeatScreen extends BaseScreen {
   final String item;
@@ -21,7 +23,7 @@ class SeatScreen extends BaseScreen {
           initSeatsBox(),
           initDivider(),
           initSub(),
-          initBook(),
+          initBook(context),
         ]));
   }
 
@@ -257,7 +259,7 @@ class SeatScreen extends BaseScreen {
     );
   }
 
-  Widget initBook() {
+  Widget initBook(BuildContext context) {
     return mButton.Button('Book',
         height: 40,
         margin: EdgeInsets.only(top: normalMargin),
@@ -277,8 +279,10 @@ class SeatScreen extends BaseScreen {
         ),
         disableStyle: TextStyle(
             color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 14),
-        enable: true,
-        onPress: () {});
+        enable: true, onPress: () {
+//      pushScreen(context, SucceedScreen());
+      pushScreen(context, FailScreen());
+    });
   }
 
   @override
