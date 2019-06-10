@@ -36,7 +36,7 @@ class BookingHeader extends BaseHeader {
             child: Container(
               child: Icon(
                 Icons.arrow_back,
-                color: Colors.white,
+                color: yellowColor,
               ),
               width: appBarHeight,
               height: appBarHeight,

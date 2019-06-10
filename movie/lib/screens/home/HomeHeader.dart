@@ -52,6 +52,7 @@ class HomeHeader extends BaseHeader {
                     Icon(
                       Icons.notifications,
                       size: 26,
+                      color: yellowColor,
                     ),
                     Positioned(
                       right: 0,

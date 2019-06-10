@@ -37,8 +37,8 @@ class MainScreen extends StatelessWidget {
 //          primaryColor: ye,
       ),
       debugShowCheckedModeBanner: false,
-//      home: SplashSrc(),
-        home: SeatScreen("12:30"),
+      home: SplashSrc(),
+//        home: SeatScreen("12:30"),
     );
   }
 }

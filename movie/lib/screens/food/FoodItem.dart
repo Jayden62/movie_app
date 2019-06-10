@@ -27,25 +27,25 @@ class FoodItem extends BaseItem {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Text(name,
-                        style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
-                    Text(" - " + price + "đ",
-                        style: TextStyle(color: Colors.white, fontSize: 16,fontWeight: FontWeight.bold))
-                  ],
+                Text(name,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold)),
+                Container(
+                  child: Text(price + " đ",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold)),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: smallestMargin),
                   child: Text(
                     description,
                     style: TextStyle(color: Colors.white70),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(
-                    top: smallestMargin,
-                  ),
                   child: Text(flavor, style: TextStyle(color: Colors.white70)),
                 ),
                 Container(
@@ -54,8 +54,8 @@ class FoodItem extends BaseItem {
                     children: <Widget>[
                       mButton.Button(
                         '-',
-                        height: 30,
-                        width: 30,
+                        height: 25,
+                        width: 25,
                         defaultStyle:
                             TextStyle(color: Colors.white30, fontSize: 16),
                         defaultDecoration: BoxDecoration(
@@ -76,8 +76,8 @@ class FoodItem extends BaseItem {
                             top: smallestMargin, left: smallerMargin),
                         child: mButton.Button(
                           '+',
-                          height: 30,
-                          width: 30,
+                          height: 25,
+                          width: 25,
                           defaultStyle:
                               TextStyle(color: Colors.white, fontSize: 16),
                           defaultDecoration: BoxDecoration(
