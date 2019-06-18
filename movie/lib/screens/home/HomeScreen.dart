@@ -104,7 +104,7 @@ class HomeScreen extends State<HomeStateful> {
               scaffoldKey.currentState.openDrawer();
             },
             onRightPress: () {
-              Navigator.push(context, SlideRoute(widget: NotifyScreen()));
+              Navigator.push(context, SlideRoute(widget: NotifyScreen(scaffoldKey)));
             },
           )),
       body: Container(
