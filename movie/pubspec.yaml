@@ -63,6 +63,8 @@ flutter:
   - assets/photos/single_seat.png
   - assets/photos/couple_seat.png
   - assets/photos/barcode.png
+  - assets/photos/photo_notify.png
+  - assets/photos/photo_ticket.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 

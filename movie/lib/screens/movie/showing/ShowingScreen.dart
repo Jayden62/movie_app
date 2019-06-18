@@ -84,7 +84,7 @@ class ShowingScreen extends State<ShowingStateful>
                 initPhoto(data.url),
                 initName(data.name, data),
                 initTrailerLabel(),
-                initTrailer(context, data.trailer),
+                initTrailer(scaffoldKey.currentContext, data.trailer),
               ],
             ),
           )),
@@ -131,8 +131,10 @@ class ShowingScreen extends State<ShowingStateful>
 
   Widget initTrailer(BuildContext context, String trailer) {
     return GestureDetector(
-      onTap: () =>
-          Navigator.push(context, SlideRoute(widget: TrailerScreen(trailer))),
+      onTap: () {
+        Navigator.push(scaffoldKey.currentContext,
+            SlideRoute(widget: TrailerScreen(trailer)));
+      },
       child: Container(
         margin: EdgeInsets.only(top: smallerMargin),
         child: Text(
@@ -205,7 +207,7 @@ class ShowingScreen extends State<ShowingStateful>
 //                                gotoDetails(scaffoldKey.currentContext,
 //                                    snapshot.data[index]);
 
-                                showDetail(context, snapshot.data[index]);
+                                showDetail(this.context, snapshot.data[index]);
                               },
                             );
                           }
@@ -253,7 +255,7 @@ class ShowingScreen extends State<ShowingStateful>
                 initPhoto(data.url),
                 initName(data.name, data),
                 initTrailerLabel(),
-                initTrailer(context, data.trailer),
+                initTrailer(this.context, data.trailer),
               ],
             ),
           );
@@ -368,6 +370,9 @@ class ShowingScreen extends State<ShowingStateful>
         enable: true, onPress: () {
       Navigator.push(
           scaffoldKey.currentContext, SlideRoute(widget: BookingScreen(movie)));
+
+//      Navigator.push(
+//          context, SlideRoute(widget: BookingScreen(movie)));
     });
   }
 

@@ -42,21 +42,18 @@ class TrailerState extends State<TrailerScreen> {
               margin: EdgeInsets.only(left: normalMargin),
               child: Icon(
                 Icons.keyboard_backspace,
+                color: yellowColor,
               ),
             ),
           ),
           title: Center(
-            child: Text('Trailer'),
-          ),
-          actions: <Widget>[
-            GestureDetector(
-              onTap: () => null,
-              child: Container(
-                margin: EdgeInsets.only(right: normalMargin),
-                child: Icon(Icons.home),
+            child: Text(
+              'Trailer',
+              style: TextStyle(
+                color: yellowColor,
               ),
-            )
-          ],
+            ),
+          ),
         ),
         body: Center(
           child: _controller.value.initialized

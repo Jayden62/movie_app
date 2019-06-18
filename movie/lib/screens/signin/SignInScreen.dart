@@ -21,6 +21,7 @@ class SignInScreen extends BaseScreen {
       padding: EdgeInsets.all(normalPadding),
       color: Color.fromARGB(255, 30, 42, 58),
       child: ListView(
+        physics: NeverScrollableScrollPhysics(),
         children: <Widget>[
           initTitle(),
           initUserNameLabel(),
@@ -39,7 +40,8 @@ class SignInScreen extends BaseScreen {
         pushScreen(
             context,
             BlocProvider<BlocHome>(
-                child: HomeStateful(userNameController.text), bloc: BlocHome()));
+                child: HomeStateful(userNameController.text),
+                bloc: BlocHome()));
 //        hideLoadingDialog(context);
       } else {
         showMessageDialog(context, 'Can not login with this account.');
