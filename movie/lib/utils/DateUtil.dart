@@ -35,6 +35,13 @@ class DateUtil {
     return currentDay;
   }
 
+  String getCurrentDayEng() {
+    var now = DateTime.now();
+    var fmt = DateFormat('EEEE');
+    String currentDay = fmt.format(now);
+    return currentDay;
+  }
+
   String convertShortDay(String value) {
     if (value.isEmpty) {
       return "";

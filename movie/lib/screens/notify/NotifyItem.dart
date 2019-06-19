@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movie/base/item/BaseItem.dart';
 import 'package:movie/base/style/BaseStyle.dart';
-import 'package:movie/screens/movie/MovieStyle.dart';
+import 'package:movie/screens/notify/NotifyStyle.dart';
+import 'package:movie/utils/DateUtil.dart';
 
 class NotifyItem extends BaseItem {
   final String image, title, content;
@@ -11,12 +12,11 @@ class NotifyItem extends BaseItem {
   @override
   Widget onInitBody(BuildContext context) {
     return Container(
-      decoration: movieDecoration,
+      decoration: notifyDecoration,
       margin: EdgeInsets.only(top: normalMargin),
       padding: EdgeInsets.all(normalPadding),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[createPhoto(image), createContent(title,content)],
+        children: <Widget>[createPhoto(image), createContent(title, content)],
       ),
     );
   }
@@ -28,36 +28,43 @@ class NotifyItem extends BaseItem {
       color: Color.fromARGB(255, 52, 64, 78),
       child: Image.asset(
         image,
-        height: 80,
-        width: 80,
       ),
     );
   }
 
   Widget createContent(String title, String content) {
-    return Container(
-      margin: EdgeInsets.only(left: normalMargin),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            child: Text(
-              title,
-              style: TextStyle(color: Colors.white),
+    return Expanded(
+      child: Container(
+        margin: EdgeInsets.only(left: normalMargin),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                  child: Text(
+                    title,
+                    style: TextStyle(color: yellowColor),
+                  ),
+                ),
+                Container(
+                  child: Text(
+                    DateUtil().getCurrentDate(),
+                    style: TextStyle(
+                        color: yellowColor, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
             ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: smallerMargin),
-            child: Text(content,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.justify,
-                maxLines: 3,
-                softWrap: true,
-                style: TextStyle(
-                  color: Colors.white70,
-                )),
-          ),
-        ],
+            Container(
+                margin: EdgeInsets.only(top: smallerMargin),
+                child: Text(content,
+                    softWrap: true,
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(color: Colors.white70))),
+          ],
+        ),
       ),
     );
   }

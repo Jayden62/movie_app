@@ -22,14 +22,17 @@ class BookingScreen extends BaseScreen {
     return Container(
         padding: EdgeInsets.all(normalPadding),
         color: Color.fromARGB(255, 30, 42, 58),
-        child: ListView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             initToday(),
             initSchedule(),
             initDate(),
             initCurrentDate(),
             initDivider(),
-            initListTheater(),
+            Expanded(
+              child: initTheaters(),
+            ),
           ],
         ));
   }
@@ -127,7 +130,7 @@ class BookingScreen extends BaseScreen {
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
         ),
         Text(
-          DateUtil().getCurrentDay(),
+          DateUtil().getCurrentDayEng(),
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
         ),
@@ -145,14 +148,16 @@ class BookingScreen extends BaseScreen {
     );
   }
 
-  Widget initListTheater() {
+  Widget initTheaters() {
     List<Widget> items = [];
-    items.add(BookingItem(' NewWork ', '5', '18:30'));
-    items.add(BookingItem(' Texas ', '7', '21:10'));
-    items.add(BookingItem(' Boston ', '15', '15:30'));
+    items.add(BookingItem('assets/photos/photo_cinema.png', 'Sub viet', '18:30',
+        '25 Broad way, Boston', '5'));
+    items.add(BookingItem('assets/photos/photo_cinema.png', 'Sub viet', '18:30',
+        '25 Broad way, Boston', '5'));
 
     return Container(
       child: ListView(
+        scrollDirection: Axis.horizontal,
         shrinkWrap: true,
         children: items,
       ),

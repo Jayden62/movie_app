@@ -9,7 +9,8 @@ class FailScreen extends BaseScreen {
     return Container(
       color: Color.fromARGB(255, 30, 42, 58),
       padding: EdgeInsets.all(normalPadding),
-      child: ListView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           initPhoto(),
           initTitle(),
@@ -20,7 +21,7 @@ class FailScreen extends BaseScreen {
 
   Widget initPhoto() {
     return Container(
-      margin: EdgeInsets.only(top: 100),
+      alignment: Alignment.center,
       child: Center(
         child: Image.asset(
           'assets/photos/report.png',

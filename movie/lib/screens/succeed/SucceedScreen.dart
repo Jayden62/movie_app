@@ -11,20 +11,16 @@ class SucceedScreen extends BaseScreen {
     return Container(
       color: Color.fromARGB(255, 30, 42, 58),
       padding: EdgeInsets.all(normalPadding),
-      child: ListView(
-        children: <Widget>[
-          initPhoto(),
-          initTitle(),
-//          initNumberQr(),
-          initNumberPhoto()
-        ],
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[initPhoto(), initTitle(), initNumberPhoto()],
       ),
     );
   }
 
   Widget initPhoto() {
     return Container(
-      margin: EdgeInsets.only(top: 100),
+      alignment: Alignment.center,
       child: Center(
         child: Image.asset(
           'assets/photos/check.png',
@@ -41,25 +37,9 @@ class SucceedScreen extends BaseScreen {
       margin: EdgeInsets.only(top: normalMargin),
       child: Text(
         'Please, do not  share with any one. This qrcode to get ticket at KIOSK.',
-        style: TextStyle(
-            color: Colors.white, fontSize: 16, fontStyle: FontStyle.italic),
+        style: TextStyle(color: Colors.white, fontStyle: FontStyle.italic),
       ),
     );
-  }
-
-  Widget initNumberQr() {
-    var uuid = Uuid();
-    return Container(
-        margin: EdgeInsets.only(top: normalMargin),
-        child: Center(
-          child: Text(
-            uuid.v1(),
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-            ),
-          ),
-        ));
   }
 
   Widget initNumberPhoto() {

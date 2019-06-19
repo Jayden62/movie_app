@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:movie/base/header/BaseHeader.dart';
 import 'package:movie/base/style/BaseStyle.dart';
 
-class FoodHeader extends BaseHeader {
+class FeatureHeader extends BaseHeader {
   final String title;
-  final Function() onLeftPress;
 
-  FoodHeader(this.title, {this.onLeftPress});
+  FeatureHeader(this.title);
 
   @override
   Widget onInitHeader(BuildContext context) {
@@ -21,8 +20,7 @@ class FoodHeader extends BaseHeader {
             child: Container(
           child: Text(
             title,
-            style: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 18, color: yellowColor),
+            style: TextStyle(color: yellowColor),
             textAlign: TextAlign.center,
           ),
         )),
@@ -30,24 +28,13 @@ class FoodHeader extends BaseHeader {
         /// Icon close or back
         leading: GestureDetector(
             onTap: () {
-              onLeftPress();
+              popScreen(context);
             },
             child: Container(
               child: Icon(Icons.arrow_back, color: yellowColor),
               width: appBarHeight,
               height: appBarHeight,
             )),
-        actions: <Widget>[
-          GestureDetector(
-            child: Container(
-              margin: EdgeInsets.only(right: normalMargin),
-              child: Icon(
-                Icons.menu,
-                color: yellowColor,
-              ),
-            ),
-          )
-        ],
       )),
     );
   }

@@ -10,12 +10,20 @@ class FoodScreen extends BaseScreen {
     List<Widget> list = [];
     list.clear();
     list.add(FoodItem(
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlc0bRyrJvq4OpTYmp84rr0efnk4Q0JHfIOdQ5o74MIXXW5bjo',
-        'WAFFKE MY COMBO',
-        '99.000',
-        'One big drink and popcorn',
-        'Mixing cheese and caramel'));
-
+        'assets/photos/photo_popcorn.png',
+        '49.000',
+        'Unflavored popcorn has a strong flavor impact mainly in toast, corn, oil, more toast, and a toasted, slightly bitter aftertaste',
+        '29.000'));
+    list.add(FoodItem(
+        'assets/photos/photo_popcorn_couple.png',
+        '89.000',
+        'Use a moderate sized metal pot with a lid. Put about 1 tablespoon of high temperature oil such as safflower or sunflower oil in the pan (corn oil or canola oil are OK too)',
+        '69.000'));
+    list.add(FoodItem(
+        'assets/photos/photo_purple_popcorn.png',
+        '69.000',
+        'After the pan is hot add about 1/4 cup of popcorn kernels. Continue to heat the pan shaking the pan back and forth over the flame or heating element constantly',
+        '59.000'));
     return Container(
         color: Color.fromARGB(255, 30, 42, 58),
         padding: EdgeInsets.all(normalPadding),
@@ -27,7 +35,7 @@ class FoodScreen extends BaseScreen {
     return PreferredSize(
         preferredSize: Size.fromHeight(appBarHeight),
         child: FoodHeader(
-          'SWEET MOVIES',
+          'Popcorn',
           onLeftPress: () {
             popScreen(context);
           },

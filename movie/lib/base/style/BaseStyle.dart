@@ -121,6 +121,11 @@ Color blackColor = Color.fromARGB(255, 0, 0, 0);
 
 Color yellowColor = Color.fromARGB(255, 253, 194, 12);
 
+Color lightYellowColor = Color.fromARGB(255, 232, 200, 97);
+
+Color mColor = Color.fromARGB(255,219, 215, 197);
+Color myColor = Color.fromARGB(255, 173, 170, 156);
+
 /// Round corner default
 
 RoundedRectangleBorder roundCorner = RoundedRectangleBorder(

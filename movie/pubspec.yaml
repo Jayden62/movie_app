@@ -65,6 +65,11 @@ flutter:
   - assets/photos/barcode.png
   - assets/photos/photo_notify.png
   - assets/photos/photo_ticket.png
+  - assets/photos/photo_popcorn.png
+  - assets/photos/photo_popcorn_couple.png
+  - assets/photos/photo_purple_popcorn.png
+  - assets/photos/photo_cinema.png
+  - assets/photos/photo_direction.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 

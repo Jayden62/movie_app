@@ -21,10 +21,9 @@ class BookingHeader extends BaseHeader {
         elevation: 0,
         title: Center(
             child: Container(
-          margin: subTitleMargin,
           child: Text(
             title,
-            style: TextStyle(fontSize: 20, color: yellowColor),
+            style: TextStyle(color: yellowColor),
           ),
         )),
 
@@ -41,6 +40,15 @@ class BookingHeader extends BaseHeader {
               width: appBarHeight,
               height: appBarHeight,
             )),
+        actions: <Widget>[
+          Container(
+            margin: EdgeInsets.only(right: normalMargin),
+            child: Icon(
+              Icons.theaters,
+              color: yellowColor,
+            ),
+          )
+        ],
       )),
     );
   }

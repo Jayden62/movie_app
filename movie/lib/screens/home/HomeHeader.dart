@@ -12,7 +12,7 @@ class HomeHeader extends BaseHeader {
 
   @override
   Widget onInitHeader(BuildContext context) {
-    String count = '9+';
+    String count = '3';
     return Container(
       child: Scaffold(
           appBar: AppBar(

@@ -17,14 +17,16 @@ class SeatScreen extends BaseScreen {
     return Container(
         color: Color.fromARGB(255, 30, 42, 58),
         padding: EdgeInsets.all(normalPadding),
-        child: ListView(children: <Widget>[
+        child: Column(mainAxisSize: MainAxisSize.max, children: <Widget>[
           initScreenFrame(),
           initScreenLabel(),
           initTypesOfSeats(),
           initSeatsBox(),
           initDivider(),
           initSub(),
-          initBook(context),
+          Expanded(
+            child: initBook(context),
+          )
         ]));
   }
 
@@ -262,8 +264,7 @@ class SeatScreen extends BaseScreen {
 
   Widget initBook(BuildContext context) {
     return mButton.Button('Book',
-        height: 40,
-        margin: EdgeInsets.only(top: normalMargin),
+        margin: EdgeInsets.only(top: superLargestMargin),
         defaultStyle: TextStyle(
             color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
         defaultDecoration: BoxDecoration(

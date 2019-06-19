@@ -5,18 +5,17 @@ import 'package:movie/custom/button/Button.dart';
 import 'package:movie/screens/seat/SeatScreen.dart';
 
 class ScheduleItem extends BaseItem {
-  final String time;
+  final String showingTime;
 
-  ScheduleItem(this.time);
+  ScheduleItem(this.showingTime);
 
   @override
   Widget onInitBody(BuildContext context) {
     return Container(
-      child: Button(time,
+      child: Button(showingTime,
           alignment: Alignment.center,
           height: 50,
           width: 80,
-          margin: EdgeInsets.only(left: normalMargin),
           defaultStyle: TextStyle(
               color: Color.fromARGB(255, 209, 159, 89),
               fontWeight: FontWeight.bold,
@@ -35,7 +34,7 @@ class ScheduleItem extends BaseItem {
               color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 16),
           enable: true, onPress: () {
         /// Move to SeatScreen
-            pushScreen(context, SeatScreen(time));
+            pushScreen(context, SeatScreen(showingTime));
       }),
     );
   }

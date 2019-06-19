@@ -42,18 +42,9 @@ class SignInScreen extends BaseScreen {
             BlocProvider<BlocHome>(
                 child: HomeStateful(userNameController.text),
                 bloc: BlocHome()));
-//        hideLoadingDialog(context);
       } else {
         showMessageDialog(context, 'Can not login with this account.');
       }
-
-//      if (data == null) {
-//        return;
-//      } else if( data == "admin"){
-//
-//        pushScreen(context, HomeScreen(size, userNameController.text));
-//      }
-//      hideLoadingDialog(context);
     };
   }
 

@@ -13,10 +13,12 @@ class NotifyScreen extends BaseScreen {
   Widget onInitBody(BuildContext context) {
     List<Widget> list = [];
 
-    list.add(NotifyItem('assets/photos/photo_ticket.png', 'Title 1',
-        'Our latest collection of deep love quotes'));
-    list.add(NotifyItem('assets/photos/photo_notify.png', 'Title 2',
-        'Love is an incredible feeling. It is one of life’s '));
+    list.add(NotifyItem('assets/photos/photo_ticket.png', 'Daily notifiy',
+        'this is my sweet home, i want u here with you. because of the best wish i alway give to you'));
+    list.add(NotifyItem('assets/photos/photo_notify.png', 'Daily notifiy',
+        'this is my sweet home, i want u here with you. because of the best wish i alway give to you'));
+    list.add(NotifyItem('assets/photos/photo_notify.png', 'Daily notifiy',
+        'this is my sweet home, i want u here with you. because of the best wish i alway give to you'));
 
     return Container(
         color: Color.fromARGB(255, 30, 42, 58),
@@ -30,7 +32,7 @@ class NotifyScreen extends BaseScreen {
         preferredSize: Size.fromHeight(appBarHeight),
         child: NotifyHeader(
           'Notifications',
-          onRightPress: () {
+          onLeftPress: () {
             popScreen(scaffoldKey.currentContext);
           },
         ));

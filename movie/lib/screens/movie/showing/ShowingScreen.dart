@@ -271,10 +271,7 @@ class ShowingScreen extends State<ShowingStateful>
           String name = "";
           String time = "";
           String alpha = "";
-          BaseLoadingDialog().showLoading(context);
           if (snapshot.hasData && snapshot != null) {
-            BaseLoadingDialog().hideLoading(context);
-
             movie = snapshot.data;
             name = movie.name;
             alpha = movie.alpha;
@@ -370,9 +367,6 @@ class ShowingScreen extends State<ShowingStateful>
         enable: true, onPress: () {
       Navigator.push(
           scaffoldKey.currentContext, SlideRoute(widget: BookingScreen(movie)));
-
-//      Navigator.push(
-//          context, SlideRoute(widget: BookingScreen(movie)));
     });
   }
 

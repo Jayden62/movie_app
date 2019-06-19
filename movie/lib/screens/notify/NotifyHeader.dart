@@ -4,9 +4,9 @@ import 'package:movie/base/style/BaseStyle.dart';
 
 class NotifyHeader extends BaseHeader {
   final String title;
-  final Function() onRightPress;
+  final Function() onLeftPress;
 
-  NotifyHeader(this.title, {this.onRightPress});
+  NotifyHeader(this.title, {this.onLeftPress});
 
   @override
   Widget onInitHeader(BuildContext context) {
@@ -29,13 +29,25 @@ class NotifyHeader extends BaseHeader {
         /// Icon close or back
         leading: GestureDetector(
             onTap: () {
-              onRightPress();
+              onLeftPress();
             },
             child: Container(
               child: Icon(Icons.arrow_back, color: yellowColor),
               width: appBarHeight,
               height: appBarHeight,
             )),
+        actions: <Widget>[
+          GestureDetector(
+            onTap: () {},
+            child: Container(
+              margin: EdgeInsets.only(right: normalMargin),
+              child: Icon(
+                Icons.view_comfy,
+                color: yellowColor,
+              ),
+            ),
+          )
+        ],
       )),
     );
   }
