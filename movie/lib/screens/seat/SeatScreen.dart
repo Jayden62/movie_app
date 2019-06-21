@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie/base/screen/BaseScreen.dart';
 import 'package:movie/base/style/BaseStyle.dart';
 import 'package:movie/custom/button/Button.dart' as mButton;
+import 'package:movie/screens/box/BoxScreen.dart';
 import 'package:movie/screens/fail/FailScreen.dart';
 import 'package:movie/screens/food/FoodScreen.dart';
 import 'package:movie/screens/seat/SeatHeader.dart';
@@ -9,178 +10,145 @@ import 'package:movie/screens/succeed/SucceedScreen.dart';
 
 class SeatScreen extends BaseScreen {
   final String item;
+  final String name;
 
-  SeatScreen(this.item);
+  SeatScreen(this.item, this.name);
 
   @override
   Widget onInitBody(BuildContext context) {
     return Container(
         color: Color.fromARGB(255, 30, 42, 58),
         padding: EdgeInsets.all(normalPadding),
-        child: Column(mainAxisSize: MainAxisSize.max, children: <Widget>[
-          initScreenFrame(),
-          initScreenLabel(),
-          initTypesOfSeats(),
-          initSeatsBox(),
-          initDivider(),
-          initSub(),
-          Expanded(
-            child: initBook(context),
-          )
+        child: ListView(children: <Widget>[
+          _createScreenFrame(),
+          _createTypes(),
+          _createResult(),
+          _createTime(),
+          _createAlpha(),
+          _createBox(context),
+          _createLine(),
+          _createBot(context),
         ]));
   }
 
-  Widget initScreenFrame() {
-    return Container(height: 150, color: Color.fromARGB(255, 93, 104, 120));
-  }
-
-  Widget initScreenLabel() {
+  Widget _createScreenFrame() {
     return Container(
-      margin: EdgeInsets.only(top: normalMargin),
+      constraints: BoxConstraints.expand(height: 150),
       alignment: Alignment.center,
+      decoration: BoxDecoration(
+          color: Color.fromARGB(255, 93, 104, 120),
+          borderRadius: BorderRadius.all(Radius.circular(8.0))),
       child: Text(
         'Screen',
-        style: TextStyle(
-          fontSize: 18,
-          color: Color.fromARGB(
-            255,
-            93,
-            104,
-            120,
-          ),
-        ),
+        style: TextStyle(color: Colors.white70),
       ),
     );
   }
 
-  Widget initTypesOfSeats() {
+  Widget _createTypes() {
     return Container(
-      margin: EdgeInsets.only(top: normalMargin),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[initCouple(), initSingle(), initCouple()],
-      ),
-    );
-  }
-
-  Widget initCouple() {
-    return Row(
-      children: <Widget>[
-        Image.asset('assets/photos/couple_seat.png'),
-        Container(
-          margin: EdgeInsets.only(left: smallerMargin),
-          child: Text(
-            'Couple',
-            style: TextStyle(
-              color: Color.fromARGB(
-                255,
-                93,
-                104,
-                120,
-              ),
-            ),
-          ),
-        )
-      ],
-    );
-  }
-
-  Widget initSingle() {
-    return Row(
-      children: <Widget>[
-        Image.asset('assets/photos/single_seat.png'),
-        Container(
-          margin: EdgeInsets.only(left: smallerMargin),
-          child: Text('Single',
-              style: TextStyle(
-                color: Color.fromARGB(
-                  255,
-                  93,
-                  104,
-                  120,
-                ),
-              )),
-        )
-      ],
-    );
-  }
-
-  Widget initSeatsBox() {
-    return Container(
+      color: Color.fromARGB(255, 52, 64, 78),
       margin: EdgeInsets.only(top: normalMargin),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          /// For couple
-          Column(
-            children: <Widget>[
-              initSeatCouple('A1', 'A2'),
-              initSeatCouple('A3', 'A4'),
-              initSeatCouple('A5', 'A6'),
-              initSeatCouple('A7', 'A8'),
-              initSeatCouple('A9', 'A10'),
-            ],
+          Container(
+            padding: EdgeInsets.all(smallerPadding),
+            child: Text(
+              'IMAX 3D',
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
           ),
-
-          /// For single
-          Column(
-            children: <Widget>[
-              initSeatRow('', 'C1'),
-              initSeatRow('', 'C3'),
-              initSeatRow('', 'C5'),
-              initSeatRow('', 'C7'),
-              initSeatRow('', 'C9'),
-            ],
-          ),
-
-          /// For couple
-          Column(
-            children: <Widget>[
-              initSeatCouple('B1', 'B2'),
-              initSeatCouple('B3', 'B4'),
-              initSeatCouple('B5', 'B6'),
-              initSeatCouple('B7', 'B8'),
-              initSeatCouple('B9', 'B10'),
-            ],
-          ),
+          Expanded(
+            child: Container(
+              alignment: Alignment.centerRight,
+              padding: EdgeInsets.all(smallerPadding),
+              child: Icon(
+                Icons.keyboard_arrow_down,
+                color: Colors.white,
+              ),
+            ),
+          )
         ],
       ),
     );
   }
 
-  Widget initSeatRow(String empty, String book) {
+  Widget _createResult() {
     return Container(
-        child: Row(
-      children: <Widget>[
-        initSeatSingle(empty, book),
-        initSeatSingle(empty, book),
-        initSeatSingle(empty, book),
-      ],
-    ));
-  }
-
-  Widget initSeatSingle(String empty, String book) {
-    return Container(
-      margin: EdgeInsets.only(top: smallestMargin),
+      color: Color.fromARGB(255, 52, 64, 78),
+      margin: EdgeInsets.only(top: normalMargin),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
-            height: 25,
-            width: 25,
-            child: mButton.Button(
-              empty,
-              defaultDecoration: BoxDecoration(color: Colors.grey),
-              defaultStyle: TextStyle(color: Colors.transparent, fontSize: 12),
+            padding: EdgeInsets.all(smallerPadding),
+            child: Text(
+              'Quantity : ',
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              alignment: Alignment.centerRight,
+              padding: EdgeInsets.all(smallPadding),
+              child: Text(
+                '0',
+                style: TextStyle(color: grayColor),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _createTime() {
+    return Container(
+      margin: EdgeInsets.only(top: normalMargin),
+      child: Text(
+        'Time : $item',
+        style: TextStyle(fontWeight: FontWeight.bold, color: yellowColor),
+      ),
+    );
+  }
+
+  Widget _createAlpha() {
+    List<String> strAlpha = ["A", "B", "C", "D", "E", "F"];
+    List<Widget> list = [];
+    list.clear();
+    String alpha = "";
+    for (alpha in strAlpha) {
+      list.add(_alphaItem(alpha));
+    }
+    return Container(
+      margin: EdgeInsets.only(top: normalMargin),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Container(
+            width: 60,
+            child: Divider(
+              height: 1,
+              color: Colors.white70,
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: smallestMargin),
-            height: 25,
-            width: 25,
-            child: mButton.Button(
-              book,
-              defaultDecoration: BoxDecoration(color: seatColor),
-              defaultStyle: TextStyle(color: Colors.white, fontSize: 12),
+            height: 60,
+            child: ListView(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              children: list,
+            ),
+          ),
+          Container(
+            width: 60,
+            child: Divider(
+              height: 1,
+              color: Colors.white70,
             ),
           ),
         ],
@@ -188,103 +156,64 @@ class SeatScreen extends BaseScreen {
     );
   }
 
-  Widget initSeatCouple(String one, String two) {
+  Widget _alphaItem(String alpha) {
     return Container(
-        margin: EdgeInsets.only(top: smallestMargin),
-        child: Row(
-          children: <Widget>[
-            Container(
-              height: 25,
-              width: 25,
-              child: mButton.Button(
-                one,
-                defaultDecoration: BoxDecoration(color: seatColor),
-                defaultStyle: TextStyle(color: Colors.white, fontSize: 12),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(left: smallestMargin),
-              height: 25,
-              width: 25,
-              child: mButton.Button(
-                two,
-                defaultDecoration: BoxDecoration(color: seatColor),
-                defaultStyle: TextStyle(color: Colors.white, fontSize: 12),
-              ),
-            ),
-          ],
-        ));
+      margin: EdgeInsets.only(left: normalMargin),
+      child: Text(
+        alpha,
+        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      ),
+    );
   }
 
-  Widget initDivider() {
+  Widget _createBox(BuildContext context) {
+    return BoxScreen(context);
+  }
+
+  Widget _createLine() {
     return Container(
-      margin: EdgeInsets.only(top: normalMargin),
+      height: 1,
       child: Divider(
-        color: Colors.grey,
+        color: Colors.white70,
       ),
     );
   }
 
-  Widget initSub() {
+  Widget _createBot(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: normalMargin),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          initSubLabel(seatColor, 'Empty'),
-          initSubLabel(Colors.grey, 'Reservation'),
-          initSubLabel(Color.fromARGB(255, 25, 81, 54), 'Disability'),
-        ],
-      ),
-    );
+        margin: EdgeInsets.only(top: normalMargin),
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[_drawTotal('0'), _drawBooking(context)]));
   }
 
-  Widget initSubLabel(Color color, String str) {
+  Widget _drawTotal(String total) {
     return Row(
       children: <Widget>[
-        Container(
-          height: 25,
-          width: 25,
-          child: mButton.Button(
-            '',
-            defaultDecoration: BoxDecoration(color: color),
-            defaultStyle: TextStyle(color: Colors.white, fontSize: 12),
-          ),
+        Text(
+          'Total : ',
+          style: TextStyle(color: yellowColor),
         ),
         Container(
-          margin: EdgeInsets.only(left: smallerMargin),
-          child: Text(
-            str,
-            style: TextStyle(color: Colors.white, fontSize: 12),
-          ),
+          margin: EdgeInsets.only(left: normalMargin),
+          child: Text('# ' + total, style: TextStyle(color: yellowColor)),
         ),
       ],
     );
   }
 
-  Widget initBook(BuildContext context) {
-    return mButton.Button('Book',
-        margin: EdgeInsets.only(top: superLargestMargin),
-        defaultStyle: TextStyle(
-            color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
-        defaultDecoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(16)),
-            color: Color.fromARGB(255, 158, 37, 31)),
-        highlightDecoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(16)),
-            color: seatColor),
-        highlightStyle: TextStyle(
-            color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 14),
-        disableDecoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(16)),
-          color: Colors.grey,
-        ),
-        disableStyle: TextStyle(
-            color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 14),
-        enable: true, onPress: () {
-      pushScreen(context, SucceedScreen());
-//      pushScreen(context, FailScreen());
-    });
+  Widget _drawBooking(BuildContext context) {
+    return mButton.Button(
+      'Book',
+      width: 80,
+      height: 40,
+      defaultDecoration: BoxDecoration(color: yellowColor),
+      defaultStyle: TextStyle(color: Colors.white),
+      highlightDecoration: BoxDecoration(color: grayColor),
+      onPress: () {
+        pushScreen(context, SucceedScreen(name));
+      },
+    );
   }
 
   @override
@@ -292,7 +221,7 @@ class SeatScreen extends BaseScreen {
     return PreferredSize(
         preferredSize: Size.fromHeight(appBarHeight),
         child: SeatHeader(
-          'SWEET MOVIES',
+          name,
           onLeftPress: () {
             popScreen(context);
           },

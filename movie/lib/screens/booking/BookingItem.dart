@@ -3,7 +3,6 @@ import 'package:movie/base/item/BaseItem.dart';
 import 'package:movie/base/style/BaseStyle.dart';
 import 'package:movie/screens/booking/BookingStyle.dart';
 import 'package:movie/screens/booking/ScheduleItem.dart';
-import 'package:movie/screens/feature/FeatureScreen.dart';
 
 class BookingItem extends BaseItem {
   final String photo;
@@ -11,8 +10,10 @@ class BookingItem extends BaseItem {
   final String showingTime;
   final String address;
   final String km;
+  final String name;
 
-  BookingItem(this.photo, this.type, this.showingTime, this.address, this.km);
+  BookingItem(this.photo, this.type, this.showingTime, this.address, this.km,
+      this.name);
 
   @override
   Widget onInitBody(BuildContext context) {
@@ -22,6 +23,7 @@ class BookingItem extends BaseItem {
       padding: EdgeInsets.all(normalPadding),
       decoration: bookingDecoration,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           createPhoto(photo),
           createShowing(),
@@ -43,7 +45,7 @@ class BookingItem extends BaseItem {
               style: TextStyle(color: Colors.white),
             ),
           ),
-          createDirection(context, km),
+          createDirection(context, km)
         ],
       ),
     );
@@ -52,7 +54,7 @@ class BookingItem extends BaseItem {
   Widget createDirection(BuildContext context, String km) {
     return GestureDetector(
         onTap: () {
-          pushScreen(context, FeatureScreen());
+//          pushScreen(context, FeatureScreen());
         },
         child: Row(
           children: <Widget>[
@@ -97,10 +99,9 @@ class BookingItem extends BaseItem {
 
   Widget createShowing() {
     List<Widget> items = [];
-    items.add(ScheduleItem(showingTime));
+    items.add(ScheduleItem(showingTime, name));
     return Container(
-        alignment: Alignment.topLeft,
-        margin: EdgeInsets.only(top: superLargestMargin),
+        margin: EdgeInsets.only(top: normalMargin),
         height: 50,
         child: ListView(
             scrollDirection: Axis.horizontal,
@@ -112,6 +113,7 @@ class BookingItem extends BaseItem {
     return Container(
       child: Image.asset(
         photo,
+        height: 200,
       ),
     );
   }

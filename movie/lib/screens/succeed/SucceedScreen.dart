@@ -6,6 +6,10 @@ import 'package:uuid/uuid.dart';
 import 'SucceedHeader.dart';
 
 class SucceedScreen extends BaseScreen {
+  final String name;
+
+  SucceedScreen(this.name);
+
   @override
   Widget onInitBody(BuildContext context) {
     return Container(
@@ -60,7 +64,7 @@ class SucceedScreen extends BaseScreen {
     return PreferredSize(
         preferredSize: Size.fromHeight(appBarHeight),
         child: SucceedHeader(
-          'SWEET MOVIES',
+          name,
           onLeftPress: () {
             popScreen(context);
           },

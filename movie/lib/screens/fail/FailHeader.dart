@@ -37,9 +37,16 @@ class FailHeader extends BaseHeader {
               width: appBarHeight,
               height: appBarHeight,
             )),
+        actions: <Widget>[
+          Container(
+            margin: EdgeInsets.only(right: normalMargin),
+            child: Icon(
+              Icons.sms_failed,
+              color: yellowColor,
+            ),
+          )
+        ],
       )),
     );
   }
-
-
 }

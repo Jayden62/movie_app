@@ -37,6 +37,15 @@ class SucceedHeader extends BaseHeader {
               width: appBarHeight,
               height: appBarHeight,
             )),
+        actions: <Widget>[
+          Container(
+            margin: EdgeInsets.only(right: normalMargin),
+            child: Icon(
+              Icons.check,
+              color: yellowColor,
+            ),
+          )
+        ],
       )),
     );
   }

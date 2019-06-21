@@ -104,7 +104,8 @@ class HomeScreen extends State<HomeStateful> {
               scaffoldKey.currentState.openDrawer();
             },
             onRightPress: () {
-              Navigator.push(context, SlideRoute(widget: NotifyScreen(scaffoldKey)));
+              Navigator.push(
+                  context, SlideRoute(widget: NotifyScreen(scaffoldKey)));
             },
           )),
       body: Container(
@@ -121,8 +122,8 @@ class HomeScreen extends State<HomeStateful> {
               })),
       bottomNavigationBar: BottomNavigation(),
       drawer: Drawer(
+        elevation: 0,
         child: Container(
-            width: 250,
             margin: EdgeInsets.only(top: normalMargin),
             color: Color.fromARGB(255, 19, 27, 40),
             child: Column(
@@ -148,7 +149,7 @@ class HomeScreen extends State<HomeStateful> {
                         ),
                         Container(
                           child: Text(
-                            'MOVIE',
+                            'Menu',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 22,
@@ -195,6 +196,7 @@ class HomeScreen extends State<HomeStateful> {
 
                 /// Menu list
                 Container(
+                  color: Color.fromARGB(255, 19, 27, 40),
                   child: ListView(
                     shrinkWrap: true,
                     children: items,

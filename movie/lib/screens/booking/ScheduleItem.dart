@@ -6,8 +6,8 @@ import 'package:movie/screens/seat/SeatScreen.dart';
 
 class ScheduleItem extends BaseItem {
   final String showingTime;
-
-  ScheduleItem(this.showingTime);
+  final String name;
+  ScheduleItem(this.showingTime,this.name);
 
   @override
   Widget onInitBody(BuildContext context) {
@@ -34,7 +34,7 @@ class ScheduleItem extends BaseItem {
               color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 16),
           enable: true, onPress: () {
         /// Move to SeatScreen
-            pushScreen(context, SeatScreen(showingTime));
+            pushScreen(context, SeatScreen(showingTime,name));
       }),
     );
   }

@@ -64,6 +64,7 @@ class BookingScreen extends BaseScreen {
     var shortDay = DateUtil().convertShortDay(value);
     print(shortDay);
     var temp = shortDay.split("T");
+//    var temp = shortDay.length - 1;
     var result = int.parse(temp[1]);
     print(result);
 
@@ -84,6 +85,7 @@ class BookingScreen extends BaseScreen {
     return Container(
       margin: EdgeInsets.only(top: normalMargin),
       height: 20,
+      alignment: Alignment.centerLeft,
       child: ListView(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
@@ -151,9 +153,9 @@ class BookingScreen extends BaseScreen {
   Widget initTheaters() {
     List<Widget> items = [];
     items.add(BookingItem('assets/photos/photo_cinema.png', 'Sub viet', '18:30',
-        '25 Broad way, Boston', '5'));
+        '25 Broad way, Boston', '5', item.name));
     items.add(BookingItem('assets/photos/photo_cinema.png', 'Sub viet', '18:30',
-        '25 Broad way, Boston', '5'));
+        '25 Broad way, Boston', '5', item.name));
 
     return Container(
       child: ListView(
@@ -166,7 +168,7 @@ class BookingScreen extends BaseScreen {
 
   Widget initDayItem(String day) {
     return Container(
-      padding: EdgeInsets.only(right: largerPadding),
+      padding: EdgeInsets.only(right: normalMargin),
       child: Text(
         day,
         style: TextStyle(color: Color.fromARGB(255, 145, 140, 136)),
