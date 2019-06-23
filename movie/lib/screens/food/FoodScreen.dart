@@ -9,24 +9,18 @@ import 'package:movie/screens/food/FoodItem.dart';
 class FoodScreen extends BaseScreen {
   @override
   Widget onInitBody(BuildContext context) {
-    final BlocFood blocFood = BlocProvider.of<BlocFood>(context);
     int value = 0;
     List<Widget> list = [];
     list.clear();
-    blocFood.foodController.stream.listen((data) {
-      value = data;
-    });
+//    blocFood.foodController.stream.listen((data) {
+//      value = data;
+//    });
 
     list.add(FoodItem(
       'assets/photos/photo_popcorn.png',
       '49.000',
       'Unflavored popcorn has a strong flavor impact mainly in toast, corn, oil, more toast, and a toasted, slightly bitter aftertaste',
       '29.000',
-      value,
-      onTapIncrease: () {
-        blocFood.increment();
-      },
-      onTapDecrease: () {},
     ));
 
 //    list.add(FoodItem(
@@ -47,15 +41,19 @@ class FoodScreen extends BaseScreen {
 //      onTapIncrease: () {},
 //      onTapDecrease: () {},
 //    ));
-
-    return StreamBuilder(
-        stream: blocFood.foodController.stream,
-        builder: (context, snapshot) => Container(
-            color: Color.fromARGB(255, 30, 42, 58),
-            padding: EdgeInsets.all(normalPadding),
-            child: snapshot.hasData
-                ? ListView(children: list)
-                : ListView(children: list)));
+    return Container(
+      color: Color.fromARGB(255, 30, 42, 58),
+      padding: EdgeInsets.all(normalPadding),
+      child: ListView(children: list),
+    );
+//    return StreamBuilder(
+//        stream: blocFood.foodController.stream,
+//        builder: (context, snapshot) => Container(
+//            color: Color.fromARGB(255, 30, 42, 58),
+//            padding: EdgeInsets.all(normalPadding),
+//            child: snapshot.hasData
+//                ? ListView(children: list)
+//                : ListView(children: list)));
   }
 
   @override

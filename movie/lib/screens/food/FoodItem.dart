@@ -11,12 +11,11 @@ class FoodItem extends BaseItem {
   final String price;
   final String content;
   final String discount;
-  final int value;
-  final Function() onTapIncrease;
-  final Function() onTapDecrease;
 
-  FoodItem(this.image, this.price, this.content, this.discount, this.value,
-      {this.onTapIncrease, this.onTapDecrease});
+//  final Function() onTapIncrease;
+//  final Function() onTapDecrease;
+
+  FoodItem(this.image, this.price, this.content, this.discount);
 
   @override
   Widget onInitBody(BuildContext context) {
@@ -105,28 +104,52 @@ class FoodItem extends BaseItem {
   }
 
   Widget _createPicking(BuildContext context) {
+    int value = 0;
+    final BlocFood blocFood = BlocProvider.of<BlocFood>(context);
+    blocFood.foodController.stream.listen((data) {
+      value = data;
+    });
     return Container(
       child: Row(
         children: <Widget>[
           _createButtonDecrease(context, '-', value),
-          _createValue(value.toString()),
+          _createValue(value.toString(), context),
           _createButtonIncrease(context, '+', value),
         ],
       ),
     );
   }
 
-  Widget _createValue(String value) {
-    return Container(
-      margin: EdgeInsets.only(left: smallerMargin, right: smallerMargin),
-      child: Text(
-        value.toString(),
-        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-      ),
-    );
+  Widget _createValue(String value, BuildContext context) {
+//    return Container(
+//      margin: EdgeInsets.only(left: smallerMargin, right: smallerMargin),
+//      child: Text(
+//        value.toString(),
+//        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+//      ),
+//    );
+    final BlocFood blocFood = BlocProvider.of<BlocFood>(context);
+    return StreamBuilder(
+        stream: blocFood.foodController.stream,
+        builder: (context, snapshot) => Container(
+              margin:
+                  EdgeInsets.only(left: smallerMargin, right: smallerMargin),
+              child: snapshot.hasData
+                  ? Text(
+                      snapshot.data.toString(),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
+                    )
+                  : Text(
+                      value.toString(),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+            ));
   }
 
   Widget _createButtonIncrease(BuildContext context, String label, int count) {
+    final BlocFood blocFood = BlocProvider.of<BlocFood>(context);
     return mButton.Button(label,
         alignment: Alignment.center,
         height: 30,
@@ -146,11 +169,12 @@ class FoodItem extends BaseItem {
         highlightStyle:
             TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
         enable: true, onPress: () {
-      onTapIncrease();
+      blocFood.increment();
     });
   }
 
   Widget _createButtonDecrease(BuildContext context, String label, int count) {
+    final BlocFood blocFood = BlocProvider.of<BlocFood>(context);
     return mButton.Button(label,
         alignment: Alignment.center,
         height: 30,
@@ -170,7 +194,7 @@ class FoodItem extends BaseItem {
         highlightStyle:
             TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
         enable: true, onPress: () {
-      onTapDecrease();
+      blocFood.decrement();
     });
   }
 }

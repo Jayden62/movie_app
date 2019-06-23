@@ -12,6 +12,14 @@ class BlocFood extends BlocBase {
     foodController.sink.add(count);
   }
 
+  void decrement() {
+    count -= 1;
+    if (count < 0) {
+      count = 0;
+    }
+    foodController.sink.add(count);
+  }
+
 //  ValueChanged<int> callback;
 //
 //  BlocFood() {

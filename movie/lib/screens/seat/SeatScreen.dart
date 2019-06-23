@@ -231,7 +231,7 @@ class SeatScreen extends BaseScreen {
           onRightPress: () {
             pushScreen(context,
                 BlocProvider<BlocFood>(child: FoodScreen(), bloc: BlocFood()));
-            //pushScreen(context, FoodScreen());
+//                pushScreen(context, FoodScreen()));
           },
         ));
   }

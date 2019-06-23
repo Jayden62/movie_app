@@ -63,6 +63,9 @@ class BookingScreen extends BaseScreen {
     print(value);
     var shortDay = DateUtil().convertShortDay(value);
     print(shortDay);
+    if (shortDay == "CN") {
+      shortDay = "T8";
+    }
     var temp = shortDay.split("T");
 //    var temp = shortDay.length - 1;
     var result = int.parse(temp[1]);
