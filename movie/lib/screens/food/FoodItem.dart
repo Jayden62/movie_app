@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:movie/base/item/BaseItem.dart';
 import 'package:movie/base/style/BaseStyle.dart';
 import 'package:movie/custom/button/Button.dart' as mButton;
+import 'package:movie/middle/provider/base/BlocProvider.dart';
+import 'package:movie/middle/provider/food/BlocFood.dart';
 import 'package:movie/screens/food/FoodStyle.dart';
 
 class FoodItem extends BaseItem {
@@ -9,8 +11,12 @@ class FoodItem extends BaseItem {
   final String price;
   final String content;
   final String discount;
+  final int value;
+  final Function() onTapIncrease;
+  final Function() onTapDecrease;
 
-  FoodItem(this.image, this.price, this.content, this.discount);
+  FoodItem(this.image, this.price, this.content, this.discount, this.value,
+      {this.onTapIncrease, this.onTapDecrease});
 
   @override
   Widget onInitBody(BuildContext context) {
@@ -20,14 +26,14 @@ class FoodItem extends BaseItem {
       padding: EdgeInsets.all(normalPadding),
       child: Row(
         children: <Widget>[
-          createPhoto(image, price),
-          createContent(context, content),
+          _createPhoto(image, price),
+          _createContent(context, content),
         ],
       ),
     );
   }
 
-  Widget createPhoto(String image, String price) {
+  Widget _createPhoto(String image, String price) {
     return Container(
       child: Column(
         children: <Widget>[
@@ -49,7 +55,7 @@ class FoodItem extends BaseItem {
     );
   }
 
-  Widget createContent(BuildContext context, String content) {
+  Widget _createContent(BuildContext context, String content) {
     return Expanded(
       child: Container(
         margin: EdgeInsets.only(left: normalMargin),
@@ -69,8 +75,8 @@ class FoodItem extends BaseItem {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  createDiscount(discount),
-                  createPicking(context)
+                  _createDiscount(discount),
+                  _createPicking(context)
                 ],
               ),
             )
@@ -80,7 +86,7 @@ class FoodItem extends BaseItem {
     );
   }
 
-  Widget createDiscount(String discount) {
+  Widget _createDiscount(String discount) {
     return Column(
       children: <Widget>[
         Text(
@@ -98,26 +104,29 @@ class FoodItem extends BaseItem {
     );
   }
 
-  Widget createPicking(BuildContext context) {
+  Widget _createPicking(BuildContext context) {
     return Container(
       child: Row(
         children: <Widget>[
-          createButtonDecrease(context, '-'),
-          Container(
-            margin: EdgeInsets.only(left: smallerMargin, right: smallerMargin),
-            child: Text(
-              '0',
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-            ),
-          ),
-          createButtonIncrease(context, '+'),
+          _createButtonDecrease(context, '-', value),
+          _createValue(value.toString()),
+          _createButtonIncrease(context, '+', value),
         ],
       ),
     );
   }
 
-  Widget createButtonIncrease(BuildContext context, String label) {
+  Widget _createValue(String value) {
+    return Container(
+      margin: EdgeInsets.only(left: smallerMargin, right: smallerMargin),
+      child: Text(
+        value.toString(),
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+      ),
+    );
+  }
+
+  Widget _createButtonIncrease(BuildContext context, String label, int count) {
     return mButton.Button(label,
         alignment: Alignment.center,
         height: 30,
@@ -136,11 +145,12 @@ class FoodItem extends BaseItem {
             color: Colors.white30),
         highlightStyle:
             TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
-        enable: true,
-        onPress: () {});
+        enable: true, onPress: () {
+      onTapIncrease();
+    });
   }
 
-  Widget createButtonDecrease(BuildContext context, String label) {
+  Widget _createButtonDecrease(BuildContext context, String label, int count) {
     return mButton.Button(label,
         alignment: Alignment.center,
         height: 30,
@@ -159,7 +169,8 @@ class FoodItem extends BaseItem {
             color: Colors.white30),
         highlightStyle:
             TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
-        enable: true,
-        onPress: () {});
+        enable: true, onPress: () {
+      onTapDecrease();
+    });
   }
 }

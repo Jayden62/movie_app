@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:movie/middle/model/ScreenSize.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:movie/middle/provider/base/BlocProvider.dart';
+import 'package:movie/middle/provider/food/BlocFood.dart';
 import 'package:movie/screens/booking/BookingScreen.dart';
+import 'package:movie/screens/food/FoodScreen.dart';
 import 'package:movie/screens/seat/SeatScreen.dart';
 import 'package:movie/screens/splash/SplashScr.dart';
 import 'package:movie/screens/trailer/TrailerScreen.dart';
@@ -38,7 +41,7 @@ class MainScreen extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: SplashSrc(),
-//        home: SeatScreen("12:30"),
+//      home: BlocProvider<BlocFood>(child: DemoScreen(), bloc: BlocFood()),
     );
   }
 }

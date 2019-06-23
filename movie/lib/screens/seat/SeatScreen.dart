@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:movie/base/screen/BaseScreen.dart';
 import 'package:movie/base/style/BaseStyle.dart';
 import 'package:movie/custom/button/Button.dart' as mButton;
+import 'package:movie/middle/provider/base/BlocProvider.dart';
+import 'package:movie/middle/provider/food/BlocFood.dart';
 import 'package:movie/screens/box/BoxScreen.dart';
 import 'package:movie/screens/fail/FailScreen.dart';
 import 'package:movie/screens/food/FoodScreen.dart';
@@ -108,6 +110,7 @@ class SeatScreen extends BaseScreen {
   Widget _createTime() {
     return Container(
       margin: EdgeInsets.only(top: normalMargin),
+      alignment: Alignment.center,
       child: Text(
         'Time : $item',
         style: TextStyle(fontWeight: FontWeight.bold, color: yellowColor),
@@ -196,7 +199,7 @@ class SeatScreen extends BaseScreen {
         ),
         Container(
           margin: EdgeInsets.only(left: normalMargin),
-          child: Text('# ' + total, style: TextStyle(color: yellowColor)),
+          child: Text('#' + total, style: TextStyle(color: yellowColor)),
         ),
       ],
     );
@@ -226,7 +229,9 @@ class SeatScreen extends BaseScreen {
             popScreen(context);
           },
           onRightPress: () {
-            pushScreen(context, FoodScreen());
+            pushScreen(context,
+                BlocProvider<BlocFood>(child: FoodScreen(), bloc: BlocFood()));
+            //pushScreen(context, FoodScreen());
           },
         ));
   }

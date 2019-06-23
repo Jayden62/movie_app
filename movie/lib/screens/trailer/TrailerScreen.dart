@@ -32,50 +32,77 @@ class TrailerState extends State<TrailerScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Color.fromARGB(255, 30, 42, 58),
-        appBar: AppBar(
-          elevation: 0,
           backgroundColor: Color.fromARGB(255, 30, 42, 58),
-          leading: GestureDetector(
-            onTap: () => Navigator.pop(context),
-            child: Container(
-              margin: EdgeInsets.only(left: normalMargin),
+          appBar: AppBar(
+            elevation: 0,
+            backgroundColor: Color.fromARGB(255, 30, 42, 58),
+            leading: GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: Container(
+                margin: EdgeInsets.only(left: normalMargin),
+                child: Icon(
+                  Icons.keyboard_backspace,
+                  color: yellowColor,
+                ),
+              ),
+            ),
+            title: Center(
+              child: Text(
+                'Trailer',
+                style: TextStyle(
+                  color: yellowColor,
+                ),
+              ),
+            ),
+            actions: <Widget>[
+              Container(
+                margin: EdgeInsets.only(right: normalMargin),
+                child: Icon(
+                  Icons.ondemand_video,
+                  color: yellowColor,
+                ),
+              ),
+            ],
+          ),
+          body: Center(
+            child: _controller.value.initialized
+                ? AspectRatio(
+                    aspectRatio: _controller.value.aspectRatio,
+                    child: VideoPlayer(_controller),
+                  )
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Trailer is not available !.',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: normalMargin),
+                        child: Icon(
+                          Icons.ondemand_video,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+          ),
+          floatingActionButton: Container(
+            padding: EdgeInsets.all(normalPadding),
+            child: FloatingActionButton(
+              onPressed: () {
+                setState(() {
+                  _controller.value.isPlaying
+                      ? _controller.pause()
+                      : _controller.play();
+                });
+              },
               child: Icon(
-                Icons.keyboard_backspace,
-                color: yellowColor,
+                _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
               ),
             ),
-          ),
-          title: Center(
-            child: Text(
-              'Trailer',
-              style: TextStyle(
-                color: yellowColor,
-              ),
-            ),
-          ),
-        ),
-        body: Center(
-          child: _controller.value.initialized
-              ? AspectRatio(
-                  aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(_controller),
-                )
-              : Container(),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              _controller.value.isPlaying
-                  ? _controller.pause()
-                  : _controller.play();
-            });
-          },
-          child: Icon(
-            _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-          ),
-        ),
-      ),
+          )),
     );
   }
 
