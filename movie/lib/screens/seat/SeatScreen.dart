@@ -214,7 +214,8 @@ class SeatScreen extends BaseScreen {
       defaultStyle: TextStyle(color: Colors.white),
       highlightDecoration: BoxDecoration(color: grayColor),
       onPress: () {
-        pushScreen(context, SucceedScreen(name));
+//        pushScreen(context, SucceedScreen(name));
+        pushScreen(context, FailScreen());
       },
     );
   }
