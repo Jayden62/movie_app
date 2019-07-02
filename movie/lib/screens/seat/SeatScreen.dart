@@ -224,16 +224,10 @@ class SeatScreen extends BaseScreen {
   PreferredSize onInitAppBar(BuildContext context) {
     return PreferredSize(
         preferredSize: Size.fromHeight(appBarHeight),
-        child: SeatHeader(
-          name,
-          onLeftPress: () {
-            popScreen(context);
-          },
-          onRightPress: () {
-            pushScreen(context,
-                BlocProvider<BlocFood>(child: FoodScreen(), bloc: BlocFood()));
-//                pushScreen(context, FoodScreen()));
-          },
-        ));
+        child: SeatHeader(name, onLeftPress: () {
+          popScreen(context);
+        }, onRightPress: () {
+          pushScreen(context, FoodScreen());
+        }));
   }
 }

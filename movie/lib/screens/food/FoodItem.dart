@@ -2,22 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:movie/base/item/BaseItem.dart';
 import 'package:movie/base/style/BaseStyle.dart';
 import 'package:movie/custom/button/Button.dart' as mButton;
-import 'package:movie/middle/provider/base/BlocProvider.dart';
-import 'package:movie/middle/provider/food/BlocFood.dart';
 import 'package:movie/screens/food/FoodStyle.dart';
 
-class FoodItem extends BaseItem {
+class FoodItem extends StatefulWidget {
   final String image;
   final String price;
   final String content;
   final String discount;
 
-//  final Function() onTapIncrease;
-//  final Function() onTapDecrease;
-
   FoodItem(this.image, this.price, this.content, this.discount);
 
   @override
+  State<StatefulWidget> createState() {
+    return FoodState(image, price, content, discount);
+  }
+}
+
+class FoodState extends State<FoodItem> {
+  final String image;
+  final String price;
+  final String content;
+  final String discount;
+
+  int count = 0;
+
+  FoodState(this.image, this.price, this.content, this.discount);
+
+  @override
+  Widget build(BuildContext context) {
+    return onInitBody(context);
+  }
+
   Widget onInitBody(BuildContext context) {
     return Container(
       decoration: foodDecoration,
@@ -104,52 +119,28 @@ class FoodItem extends BaseItem {
   }
 
   Widget _createPicking(BuildContext context) {
-    int value = 0;
-    final BlocFood blocFood = BlocProvider.of<BlocFood>(context);
-    blocFood.foodController.stream.listen((data) {
-      value = data;
-    });
     return Container(
       child: Row(
         children: <Widget>[
-          _createButtonDecrease(context, '-', value),
-          _createValue(value.toString(), context),
-          _createButtonIncrease(context, '+', value),
+          _createButtonDecrease(context, '-'),
+          _createValue(count.toString(), context),
+          _createButtonIncrease(context, '+'),
         ],
       ),
     );
   }
 
   Widget _createValue(String value, BuildContext context) {
-//    return Container(
-//      margin: EdgeInsets.only(left: smallerMargin, right: smallerMargin),
-//      child: Text(
-//        value.toString(),
-//        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-//      ),
-//    );
-    final BlocFood blocFood = BlocProvider.of<BlocFood>(context);
-    return StreamBuilder(
-        stream: blocFood.foodController.stream,
-        builder: (context, snapshot) => Container(
-              margin:
-                  EdgeInsets.only(left: smallerMargin, right: smallerMargin),
-              child: snapshot.hasData
-                  ? Text(
-                      snapshot.data.toString(),
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.white),
-                    )
-                  : Text(
-                      value.toString(),
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.white),
-                    ),
-            ));
+    return Container(
+      margin: EdgeInsets.only(left: smallerMargin, right: smallerMargin),
+      child: Text(
+        value,
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+      ),
+    );
   }
 
-  Widget _createButtonIncrease(BuildContext context, String label, int count) {
-    final BlocFood blocFood = BlocProvider.of<BlocFood>(context);
+  Widget _createButtonIncrease(BuildContext context, String label) {
     return mButton.Button(label,
         alignment: Alignment.center,
         height: 30,
@@ -169,12 +160,13 @@ class FoodItem extends BaseItem {
         highlightStyle:
             TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
         enable: true, onPress: () {
-      blocFood.increment();
+      setState(() {
+        count += 1;
+      });
     });
   }
 
-  Widget _createButtonDecrease(BuildContext context, String label, int count) {
-    final BlocFood blocFood = BlocProvider.of<BlocFood>(context);
+  Widget _createButtonDecrease(BuildContext context, String label) {
     return mButton.Button(label,
         alignment: Alignment.center,
         height: 30,
@@ -194,7 +186,12 @@ class FoodItem extends BaseItem {
         highlightStyle:
             TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
         enable: true, onPress: () {
-      blocFood.decrement();
+      setState(() {
+        count -= 1;
+        if (count < 0) {
+          count = 0;
+        }
+      });
     });
   }
 }
