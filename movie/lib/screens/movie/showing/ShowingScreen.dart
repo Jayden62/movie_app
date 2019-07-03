@@ -297,7 +297,7 @@ class ShowingScreen extends State<ShowingStateful>
         children: <Widget>[
           Container(
             child: Text(
-              'Type : ',
+              'Types : ',
               style: TextStyle(color: Colors.white70),
             ),
           ),

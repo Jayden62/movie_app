@@ -19,7 +19,7 @@ class BookingItem extends BaseItem {
   Widget onInitBody(BuildContext context) {
     return Container(
       width: 300,
-      margin: EdgeInsets.only(top: normalMargin, left: normalMargin),
+      margin: EdgeInsets.only(top: normalMargin, left: smallerMargin),
       padding: EdgeInsets.all(normalPadding),
       decoration: bookingDecoration,
       child: Column(

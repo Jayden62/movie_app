@@ -99,4 +99,34 @@ class DateUtil {
     }
     return value.toString();
   }
+
+  String convertVnToEng(String text) {
+    if (text.isEmpty) {
+      return "";
+    }
+    switch (text) {
+      case 'T2':
+        text = 'Mon';
+        break;
+      case 'T3':
+        text = 'Tue';
+        break;
+      case 'T4':
+        text = 'Wed';
+        break;
+      case 'T5':
+        text = 'Thu';
+        break;
+      case 'T6':
+        text = 'Fri';
+        break;
+      case 'T7':
+        text = 'Sta';
+        break;
+      case 'CN':
+        text = 'Sun';
+        break;
+    }
+    return text;
+  }
 }

@@ -76,13 +76,16 @@ class BookingScreen extends BaseScreen {
 
     for (int index = 0; index < lengthDay; index++) {
       var value = (index + result) % 7;
+      var newVal = 'T';
       var data = DateUtil().convertDayNumber(value);
       if (data == "8") {
         data = "CN";
-        items.add(initDayItem(data));
+        newVal = data;
       } else {
-        items.add(initDayItem('T' + data));
+        newVal = newVal + data;
       }
+
+      items.add(initDayItem(DateUtil().convertVnToEng(newVal)));
     }
 
     return Container(
@@ -103,7 +106,8 @@ class BookingScreen extends BaseScreen {
 
     var value = DateUtil().getCurrentDayNumber();
     var result = int.parse(value);
-    for (result; result <= 31; result++) {
+    var newVal = result + 6;
+    for (result; result <= newVal; result++) {
       if (result < 10) {
         items.add(DateItem('0' + result.toString()));
       } else {
@@ -171,7 +175,7 @@ class BookingScreen extends BaseScreen {
 
   Widget initDayItem(String day) {
     return Container(
-      padding: EdgeInsets.only(right: normalMargin),
+      padding: EdgeInsets.only(right: 25),
       child: Text(
         day,
         style: TextStyle(color: Color.fromARGB(255, 145, 140, 136)),
