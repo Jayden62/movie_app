@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:movie/base/screen/BaseScreen.dart';
 import 'package:movie/base/style/BaseStyle.dart';
 import 'package:movie/custom/button/Button.dart' as mButton;
-import 'package:movie/middle/provider/base/BlocProvider.dart';
-import 'package:movie/middle/provider/food/BlocFood.dart';
 import 'package:movie/screens/box/BoxScreen.dart';
 import 'package:movie/screens/fail/FailScreen.dart';
 import 'package:movie/screens/food/FoodScreen.dart';
 import 'package:movie/screens/seat/SeatHeader.dart';
 import 'package:movie/screens/succeed/SucceedScreen.dart';
+import 'package:movie/widgets/MyDropdown.dart';
 
 class SeatScreen extends BaseScreen {
   final String item;
@@ -48,33 +47,36 @@ class SeatScreen extends BaseScreen {
   }
 
   Widget _createTypes() {
-    return Container(
-      color: Color.fromARGB(255, 52, 64, 78),
-      margin: EdgeInsets.only(top: normalMargin),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.all(smallerPadding),
-            child: Text(
-              'IMAX 3D',
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Expanded(
-            child: Container(
-              alignment: Alignment.centerRight,
-              padding: EdgeInsets.all(smallerPadding),
-              child: Icon(
-                Icons.keyboard_arrow_down,
-                color: Colors.white,
-              ),
-            ),
-          )
-        ],
-      ),
-    );
+    return MyDropdown();
+
+//    return Container(
+//      color: Color.fromARGB(255, 52, 64, 78),
+//      margin: EdgeInsets.only(top: normalMargin),
+//      child: Row(
+//        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//        children: <Widget>[
+//          Container(
+//            padding: EdgeInsets.all(smallerPadding),
+//            child: Text(
+//              'IMAX 3D',
+//              style:
+//                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+//            ),
+//          ),
+//
+//          Expanded(
+//            child: Container(
+//              alignment: Alignment.centerRight,
+//              padding: EdgeInsets.all(smallerPadding),
+//              child: Icon(
+//                Icons.keyboard_arrow_down,
+//                color: Colors.white,
+//              ),
+//            ),
+//          )
+//        ],
+//      ),
+//    );
   }
 
   Widget _createResult() {
@@ -86,6 +88,7 @@ class SeatScreen extends BaseScreen {
         children: <Widget>[
           Container(
             padding: EdgeInsets.all(smallerPadding),
+            margin: EdgeInsets.only(left: smallerPadding),
             child: Text(
               'Quantity : ',
               style:
@@ -96,9 +99,10 @@ class SeatScreen extends BaseScreen {
             child: Container(
               alignment: Alignment.centerRight,
               padding: EdgeInsets.all(smallPadding),
+              margin: EdgeInsets.only(right: smallerPadding),
               child: Text(
                 '0',
-                style: TextStyle(color: grayColor),
+                style: TextStyle(color: yellowColor),
               ),
             ),
           )
@@ -214,8 +218,8 @@ class SeatScreen extends BaseScreen {
       defaultStyle: TextStyle(color: Colors.white),
       highlightDecoration: BoxDecoration(color: grayColor),
       onPress: () {
-//        pushScreen(context, SucceedScreen(name));
-        pushScreen(context, FailScreen());
+        pushScreen(context, SucceedScreen(name));
+//        pushScreen(context, FailScreen());
       },
     );
   }

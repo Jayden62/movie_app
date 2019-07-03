@@ -124,7 +124,7 @@ class ShowingScreen extends State<ShowingStateful>
       margin: EdgeInsets.only(top: smallerMargin),
       child: Text(
         'Trailer',
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color: Colors.white70),
       ),
     );
   }
@@ -256,10 +256,106 @@ class ShowingScreen extends State<ShowingStateful>
                 initName(data.name, data),
                 initTrailerLabel(),
                 initTrailer(this.context, data.trailer),
+                _createPublic(data.public),
+                _createType(data.type),
+                _createDirector(data.director),
+                _createTimes(data.time),
               ],
             ),
           );
         });
+  }
+
+  Widget _createPublic(String public) {
+    return Container(
+      margin: EdgeInsets.only(top: smallerMargin),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Container(
+            child: Text(
+              'Public : ',
+              style: TextStyle(color: Colors.white70),
+            ),
+          ),
+          Container(
+            child: Text(
+              public,
+              style: TextStyle(color: Colors.white70),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _createType(String type) {
+    return Container(
+      margin: EdgeInsets.only(top: smallerMargin),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Container(
+            child: Text(
+              'Type : ',
+              style: TextStyle(color: Colors.white70),
+            ),
+          ),
+          Container(
+            child: Text(
+              type,
+              style: TextStyle(color: Colors.white70),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _createDirector(String director) {
+    return Container(
+      margin: EdgeInsets.only(top: smallerMargin),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Container(
+            child: Text(
+              'Director : ',
+              style: TextStyle(color: Colors.white70),
+            ),
+          ),
+          Container(
+            child: Text(
+              director,
+              style: TextStyle(color: Colors.white70),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _createTimes(String times) {
+    return Container(
+      margin: EdgeInsets.only(top: smallerMargin),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Container(
+            child: Text(
+              'Times : ',
+              style: TextStyle(color: Colors.white70),
+            ),
+          ),
+          Container(
+            child: Text(
+              times,
+              style: TextStyle(color: Colors.white70),
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   Widget initShowingInfo() {

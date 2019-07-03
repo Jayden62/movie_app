@@ -32,25 +32,37 @@ class API {
           'C16',
           '2giờ 2phút ',
           'http://lestoilesheroiques.fr/wp-content/uploads/2019/03/D2HmK8zUcAAJPiq.jpg',
-          ''));
+          'http://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_20mb.mp4',
+          '5 Thg 7, 2019',
+          'Action, Fiction',
+          'Jon Watts'));
       movies.add(Movie(
           'END GAME',
           'C18',
           '3giờ 2phút ',
           'https://znews-photo.zadn.vn/w660/Uploaded/xbhunku/2019_03_15/D1nkY7UVAAUs7KN.jpg',
-          'http://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_20mb.mp4'));
+          'http://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_20mb.mp4',
+          '5 Thg 7, 2019',
+          'Action, Fiction',
+          'Jon Watts'));
       movies.add(Movie(
           'LẬT MẶT 4',
           'C11',
           '1giờ 40phút ',
           'https://i-ione.vnecdn.net/2019/03/12/image010-1552375474-1552375487-2146-1552375543_1200x0.png',
-          ''));
+          'http://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_20mb.mp4',
+          '5 Thg 7, 2019',
+          'Action, Fiction',
+          'Jon Watts'));
       movies.add(Movie(
           'QUÝ CÔ LỪA ĐẢO',
           'C22',
           '1giờ 58phút',
           'https://reviewphimaz.com/wp-content/uploads/2018/05/15-bo-phim-hai-khong-the-bo-qua-nam-2018-12.jpg',
-          ''));
+          'http://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_20mb.mp4',
+          '5 Thg 7, 2019',
+          'Action, Fiction',
+          'Jon Watts'));
 
       return movies;
     } catch (e) {}

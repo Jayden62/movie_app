@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movie/base/screen/BaseScreen.dart';
 import 'package:movie/base/style/BaseStyle.dart';
 import 'package:movie/custom/bottom_navigation/BottomNavigation.dart';
 import 'package:movie/middle/provider/base/BlocProvider.dart';
