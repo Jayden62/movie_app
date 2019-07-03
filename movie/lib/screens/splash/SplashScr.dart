@@ -16,6 +16,10 @@ class SplashSrc extends BaseScreen {
       image: Image.asset('assets/photos/photo_splash.png'),
       backgroundColor: Color.fromARGB(255, 30, 42, 58),
       styleTextUnderTheLoader: TextStyle(),
+      loadingText: Text(
+        'Welcome to flutter',
+        style: TextStyle(fontSize: 16, color: Colors.white70),
+      ),
       loaderColor: Color.fromARGB(255, 93, 104, 120),
     );
   }
