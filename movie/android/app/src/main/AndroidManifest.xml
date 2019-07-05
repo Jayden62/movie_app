@@ -12,8 +12,8 @@
 
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="movie"
-        android:icon="@mipmap/ic_launcher"
+        android:label="N-movie"
+        android:icon="@mipmap/launcher_icon"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".MainActivity"

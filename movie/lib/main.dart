@@ -25,6 +25,7 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'N-movie',
       /// Localization, support english and vietnamese languages
       localizationsDelegates: [
         const LocalizationsDelegateUtil(),

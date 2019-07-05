@@ -13,11 +13,11 @@ class SplashSrc extends BaseScreen {
       seconds: 3,
       navigateAfterSeconds:
           BlocProvider<BlocSignIn>(child: SignInScreen(), bloc: BlocSignIn()),
-      image: Image.asset('assets/photos/photo_splash.png'),
+      image: Image.asset('assets/photos/photo_logo.png'),
       backgroundColor: Color.fromARGB(255, 30, 42, 58),
       styleTextUnderTheLoader: TextStyle(),
       loadingText: Text(
-        'Welcome to flutter',
+        'Welcome to N-movie',
         style: TextStyle(fontSize: 16, color: Colors.white70),
       ),
       loaderColor: Color.fromARGB(255, 93, 104, 120),
