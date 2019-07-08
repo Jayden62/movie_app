@@ -6,6 +6,7 @@ import 'package:movie/screens/movie/comingsoon/ComingSoonItem.dart';
 class ComingSoonScreen extends BaseScreen {
   @override
   Widget onInitBody(BuildContext context) {
+    print('ComingSoonScreen');
     List<Widget> items = [];
     items.add(ComingSoonItem(
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGLCAYXoNu6R1l0sSiC0KOsAlSnmXnfU4tmoc_2VMXVhMSlqZg',

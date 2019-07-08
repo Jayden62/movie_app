@@ -236,6 +236,12 @@ class ShowingScreen extends State<ShowingStateful>
                             },
                             scrollDirection: Axis.horizontal,
                           );
+                        } else {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              backgroundColor: Color.fromARGB(255, 30, 42, 58),
+                            ),
+                          );
                         }
                       })))
         ],

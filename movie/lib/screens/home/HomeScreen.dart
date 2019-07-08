@@ -6,6 +6,7 @@ import 'package:movie/middle/provider/home/BlocHome.dart';
 import 'package:movie/middle/provider/movie/BlocMovie.dart';
 import 'package:movie/middle/provider/signin/BlocSignIn.dart';
 import 'package:movie/screens/home/HomeHeader.dart';
+import 'package:movie/screens/introduction/IntroductionScreen.dart';
 import 'package:movie/screens/menu/MenuItem.dart';
 import 'package:movie/screens/movie/MovieScreen.dart';
 import 'package:movie/screens/notify/NotifyScreen.dart';
@@ -214,10 +215,7 @@ class HomeScreen extends State<HomeStateful> {
                     enable: true,
                     onPress: () {
                       Navigator.push(
-                          context,
-                          SlideRoute(
-                              widget: BlocProvider<BlocSignIn>(
-                                  child: SignInScreen(), bloc: BlocSignIn())));
+                          context, SlideRoute(widget: IntroductionScreen()));
                     },
                   ),
                 ),

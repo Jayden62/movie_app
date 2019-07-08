@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:movie/middle/provider/base/BlocProvider.dart';
 import 'package:movie/middle/provider/signin/BlocSignIn.dart';
+import 'package:movie/screens/introduction/IntroductionScreen.dart';
 import 'package:movie/screens/signin/SignInScreen.dart';
 import 'package:movie/utils/LocalizationsDelegateUtil.dart';
 
@@ -21,6 +22,7 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'N-movie',
+
       /// Localization, support english and vietnamese languages
       localizationsDelegates: [
         const LocalizationsDelegateUtil(),
@@ -32,11 +34,10 @@ class MainScreen extends StatelessWidget {
         const Locale('vi', ''),
       ],
       theme: ThemeData(
-        brightness: Brightness.light,
-//          primaryColor: ye,
+        brightness: Brightness.dark,
       ),
       debugShowCheckedModeBanner: false,
-      home:  BlocProvider<BlocSignIn>(child: SignInScreen(), bloc: BlocSignIn()),
+      home: IntroductionScreen(),
     );
   }
 }

@@ -29,7 +29,7 @@ dependencies:
   uuid: ^2.0.1
   flutter_launcher_icons: ^0.7.2+1
   video_player:
-
+  intro_views_flutter: ^2.4.0
 
   flutter_localizations:
     sdk: flutter
@@ -76,6 +76,9 @@ flutter:
   - assets/photos/photo_cinema.png
   - assets/photos/photo_direction.png
   - assets/photos/photo_logo.png
+  - assets/photos/booking.png
+  - assets/photos/film.png
+  - assets/photos/popcorn.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 
