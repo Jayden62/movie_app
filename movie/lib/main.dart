@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -15,6 +17,16 @@ void main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
     runApp(MainScreen());
   });
+
+//  final taskId = await FlutterDownloader.enqueue(
+//    url:
+//        'https://drive.google.com/file/d/115gixznv2C5iG-I6rOjL1Z8aGRyKIPic/view?usp=sharing',
+//    savedDir: 'assets/images/',
+//    showNotification: true,
+//    // show download progress in status bar (for Android)
+//    openFileFromNotification:
+//        true, // click on notification to open downloaded file (for Android)
+//  );
 }
 
 class MainScreen extends StatelessWidget {
